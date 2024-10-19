@@ -6,7 +6,9 @@
     "strict": true,
     "baseUrl": "./src",
     "paths": {
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@componenets/*": ["app/components/*"],
+      "@interface/*": ["app/interface/*"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
