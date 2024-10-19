@@ -1,0 +1,31 @@
+<div class="date-picker">
+    <input 
+      type="text" 
+      [value]="selectedDate | date:'MM/dd/yyyy'" 
+      (click)="toggleCalendar()" 
+      readonly 
+      placeholder="Select Date"
+    />
+  
+    @if (isCalendarVisible) {
+        <div class="calendar">
+          <div class="calendar-header">
+            <button (click)="changeMonth(-1)">&lt;</button>
+            <span>{{ months[currentMonth] }} {{ currentYear }}</span>
+            <button (click)="changeMonth(1)">&gt;</button>
+          </div>
+      
+          <div class="calendar-body">
+            @for (day of days; track $index) {
+                <div class="day">{{ day }}</div>
+            }
+            @for (date of calendarDays; track $index) {
+                <div class="date" (click)="selectDate(date)">
+                  {{ date }}
+                </div>
+            }
+          </div>
+        </div>
+    }
+  </div>
+  

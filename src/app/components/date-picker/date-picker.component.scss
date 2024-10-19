@@ -1,0 +1,47 @@
+.date-picker {
+    position: relative;
+    width: 200px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .calendar {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background: white;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background: #f0f0f0;
+  }
+  
+  .calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .day {
+    font-weight: bold;
+  }
+  
+  .date {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .date:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
