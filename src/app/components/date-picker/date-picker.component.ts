@@ -1,32 +1,73 @@
-import { Component } from '@angular/core';
-import { DatePipe, NgIf } from '@angular/common';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { ButtonComponent } from "../button/button.component";
+import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { IconButtonComponent } from '@componenets/icon-button/icon-button.component';
+import { IconComponent } from '@componenets/icon/icon.component';
+import { Style } from '@interface/style';
 
 @Component({
-  selector: 'app-date-picker',
+  selector: 'DatePicker',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, ButtonComponent, IconButtonComponent, IconComponent, CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './date-picker.component.html',
-  styleUrl: './date-picker.component.scss'
+  styleUrls: ['./date-picker.component.scss']
 })
 export class DatePickerComponent {
+  @Input() formControl!: UntypedFormControl;
+  @Input() ngModel !: Date | null;
+  @Input() dateFormat: string = 'MM/dd/yyyy';
+  @Input() label!: string;
+  @Input() placeholder: string = 'Select';
+  @Input() disabled: boolean = false;
+
+  @Input() hideIcon: boolean = false;
+  @Input() iconName: string = 'calendar_today';
+  @Input() iconPosition: string = 'before';
+  @Input() iconStyle: Style = {fontSize: '14px'}
+
+
+  @Output() ngModelChange = new EventEmitter<Date | null>();
+  @Output() focus = new EventEmitter<FocusEvent>();
+  @Output() blur = new EventEmitter<FocusEvent>();
+  @Output() input = new EventEmitter<Event>();
+
   selectedDate: Date | null = null;
   isCalendarVisible = false;
 
   currentYear: number = new Date().getFullYear();
   currentMonth: number = new Date().getMonth();
-
-  days: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 
-                      'July', 'August', 'September', 'October', 'November', 'December'];
-
+  
+  days: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   calendarDays: number[] = [];
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
     this.generateCalendar();
   }
 
+  ngOnInit() {
+    // Set the initial selected date from the ngModel or formControl
+    if (this.formControl) {
+      this.disabled = this.formControl.disabled;
+      this.formControl.valueChanges.subscribe((date: Date | null) => {
+        this.selectedDate = date;
+      });
+    }
+  }
+
   toggleCalendar() {
-    this.isCalendarVisible = !this.isCalendarVisible;
+    if (!this.disabled) {
+      this.isCalendarVisible = !this.isCalendarVisible; // Only toggle if not disabled
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isCalendarVisible = false;
+    }
   }
 
   changeMonth(offset: number) {
@@ -45,20 +86,32 @@ export class DatePickerComponent {
     const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
     const lastDate = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
 
-    this.calendarDays = [];
-
-    for (let i = 0; i < firstDay; i++) {
-      this.calendarDays.push(0); // empty slots for alignment
-    }
-    for (let i = 1; i <= lastDate; i++) {
-      this.calendarDays.push(i);
-    }
+    this.calendarDays = Array(firstDay).fill(0).concat(Array.from({ length: lastDate }, (_, i) => i + 1));
   }
 
   selectDate(day: number) {
     if (day > 0) {
       this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
       this.isCalendarVisible = false;
+      if(this.ngModel){
+        this.ngModelChange.emit(this.selectedDate); // Emit formatted date
+      }
+      if (this.formControl) {
+        this.formControl.setValue(this.selectedDate); // Update formControl
+      }
     }
+  }
+
+  isToday(day: number): boolean {
+    if (!this.selectedDate) return false;
+    const today = new Date();
+    return today.getFullYear() === this.currentYear && today.getMonth() === this.currentMonth && today.getDate() === day;
+  }
+
+  isSelectedDate(day: number): boolean {
+    if (!this.selectedDate) return false;
+    return this.selectedDate.getFullYear() === this.currentYear &&
+           this.selectedDate.getMonth() === this.currentMonth &&
+           this.selectedDate.getDate() === day;
   }
 }

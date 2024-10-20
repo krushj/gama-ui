@@ -1,0 +1,22 @@
+@import '@styles/variables.scss';
+.gama-icon{
+    outline: none;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+
+    &.white-primary-medium-icon{
+        background-color: $white-50;
+        box-shadow: 0 .25rem 1rem #33333329;
+        &.medium{
+            
+        }
+    }
+
+    &:disabled{
+        cursor: not-allowed;
+    }
+}

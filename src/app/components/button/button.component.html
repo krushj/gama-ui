@@ -1,1 +1,7 @@
-<p>button works!</p>
+<button (click)="onClick.emit($event)" [disabled]="disabled" [style]="style">
+    <ng-content select="[prefix]"></ng-content>
+    @if (title) {
+        {{title}}
+    }
+    <ng-content select="[suffix]"></ng-content>
+</button>
