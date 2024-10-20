@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-date-range-picker',
+  selector: 'DateRangePicker',
   standalone: true,
   imports: [],
   templateUrl: './date-range-picker.component.html',
