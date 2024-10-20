@@ -1,31 +1,61 @@
-<div class="date-picker">
-    <input 
-      type="text" 
-      [value]="selectedDate | date:'MM/dd/yyyy'" 
-      (click)="toggleCalendar()" 
-      readonly 
-      placeholder="Select Date"
-    />
-  
-    @if (isCalendarVisible) {
-        <div class="calendar">
-          <div class="calendar-header">
-            <button (click)="changeMonth(-1)">&lt;</button>
-            <span>{{ months[currentMonth] }} {{ currentYear }}</span>
-            <button (click)="changeMonth(1)">&gt;</button>
-          </div>
-      
-          <div class="calendar-body">
-            @for (day of days; track $index) {
-                <div class="day">{{ day }}</div>
-            }
-            @for (date of calendarDays; track $index) {
-                <div class="date" (click)="selectDate(date)">
-                  {{ date }}
-                </div>
-            }
-          </div>
-        </div>
+<div class="date-picker" [ngClass]="{'disabled':disabled}">
+  @if (label) {
+    <span (click)="toggleCalendar()" class="input-label">{{ label }}</span>
+  }
+
+  <div class="input-container" (click)="toggleCalendar()">
+    <Icon *ngIf="iconPosition === 'before' && !hideIcon" [name]="iconName" [style]="{marginLeft: '-8px'}" [style]="iconStyle">
+    </Icon>
+    @if (formControl) {
+      <input 
+        type="text" 
+        [value]="formControl.value ? (formControl.value | date: dateFormat) : ''" 
+        [placeholder]="placeholder" 
+        readonly 
+        (focus)="toggleCalendar();focus.emit($event)" 
+        (blur)="blur.emit($event)" 
+      />
+    } @else {
+      <input 
+        type="text" 
+        [placeholder]="placeholder"
+        [ngModel]="ngModel ? (ngModel | date: dateFormat) : ''"
+        (ngModelChange)="ngModelChange.emit($event)"
+        (focus)="toggleCalendar();focus.emit($event)" 
+        (blur)="blur.emit($event)" 
+        readonly
+      />
     }
+    <Icon *ngIf="iconPosition === 'after' && !hideIcon" [name]="iconName" [style]="iconStyle"/>
   </div>
   
+
+  @if (isCalendarVisible) {
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <IconButton [style]="{boxShadow: 'none'}" (click)="changeMonth(-1)" iconName="chevron_left"></IconButton>
+        <span class="day-text">{{ months[currentMonth] }} {{ currentYear }}</span>
+        <IconButton [style]="{boxShadow: 'none'}" (click)="changeMonth(1)" iconName="chevron_right"></IconButton>
+      </div>
+
+      <div class="calendar-body">
+        @for (day of days; track $index) {
+          <div class="day">{{ day }}</div>
+        }
+        @for (date of calendarDays; track $index) {
+          @if (date) {
+            <div 
+              class="date" 
+              [ngClass]="{'active-date': isSelectedDate(date), 'today': isToday(date)}" 
+              (click)="selectDate(date)"
+            >
+              {{ date }}
+            </div>
+          } @else {
+            <div></div>
+          }
+        }
+      </div>
+    </div>
+  }
+</div> 
