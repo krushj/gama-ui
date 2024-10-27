@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Style } from '@interface/style';
+import { Style } from '@gama/interface';
 
 
 @Component({

@@ -1,11 +1,10 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { ButtonComponent } from "../button/button.component";
 import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
-import { IconButtonComponent } from '@componenets/icon-button/icon-button.component';
-import { IconComponent } from '@componenets/icon/icon.component';
-import { Style } from '@interface/style';
-
+import { Style } from '@gama/interface';
+import { IconButtonComponent } from '../icon-button/icon-button.component';
+import { IconComponent } from '../icon/icon.component';
+import { ButtonComponent } from "../button/button.component";
 @Component({
   selector: 'DatePicker',
   standalone: true,
@@ -16,9 +15,9 @@ import { Style } from '@interface/style';
 export class DatePickerComponent {
   @Input() formControl!: UntypedFormControl;
   @Input() ngModel !: Date | null;
-  @Input() dateFormat: string = 'MM/dd/yyyy';
+  @Input() dateFormat: string = 'mm/dd/yyyy';
   @Input() label!: string;
-  @Input() placeholder: string = 'Select';
+  @Input() placeholder: string = this.dateFormat;
   @Input() disabled: boolean = false;
 
   @Input() hideIcon: boolean = false;

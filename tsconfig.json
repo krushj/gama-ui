@@ -7,8 +7,9 @@
     "baseUrl": "./src",
     "paths": {
       "@styles/*": ["styles/*"],
-      "@componenets/*": ["app/components/*"],
-      "@interface/*": ["app/interface/*"]
+      "@gama/components": ["app/components"],
+      "@gama/interface": ["app/interface"],
+      "@gama/pipe": ["app/pipe"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

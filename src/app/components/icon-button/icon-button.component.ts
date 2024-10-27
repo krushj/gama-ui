@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IconComponent } from '@componenets/icon/icon.component';
-import { Style } from '@interface/style';
+import { Style } from '@gama/interface';
+import { IconComponent } from '../icon/icon.component';
 
 
 @Component({
