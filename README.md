@@ -2,11 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
 
-# IconComponent
+# Components
+
+## IconComponent
 
 The `IconComponent` is an Angular standalone component designed to display icons with customizable properties such as type, name, and styles. It supports two icon types (`icons` and `symbols`) and allows passing custom styles through an input property.
 
-## Table of Contents
+### Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -16,61 +18,43 @@ The `IconComponent` is an Angular standalone component designed to display icons
   - [style](#style)
 - [Example](#example)
 
-## Installation
+### Installation
 
 To use the `IconComponent` in your Angular application, ensure you have Angular set up and follow these steps:
 
-1. **Install necessary dependencies (if required):**
-
-   If your project doesn't have Angular installed, you can set it up with:
-
-   ```bash
-   ng new your-project-name
-   cd your-project-name
-   ```
-
-2. **Import the IconComponent:**
+1. **Import the IconComponent:**
 
    Ensure that your Angular module or component imports the `IconComponent`:
 
    ```typescript
-   import { IconComponent } from '@componenets/icon/icon.component'; // Adjust the path accordingly
+   import { IconComponent } from '@gama/components'; // Adjust the path accordingly
    ```
 
 3. **Add the component to your template:**
 
-   You can now use `<app-icon>` in your templates.
+   You can now use `<GIcon>` in your templates.
 
-## Usage
+### Usage
 
 You can use the `IconComponent` in your Angular templates as follows:
 
 ```html
-<app-icon type="icons" name="home" [style]="{ color: 'blue', fontSize: '24px' }"></app-icon>
+<GIcon type="icons" name="home" [style]="{ color: 'blue', fontSize: '24px' }"></GIcon>
 ```
 
-## Input Properties
+### Input Properties
+Certainly! Below is the information you provided in a structured table format:
 
-### `type`
+### Icon Properties Table
 
-- **Type:** `string`
-- **Description:** Specifies the type of icon to display. Allowed values are `icons` or `symbols`.
-- **Default:** `symbols`
-- **Validation:** If the value is not `icons` or `symbols`, an error will be thrown.
+| Property  | Type         | Description                                                                 | Default Value | Validation                                                   |
+|-----------|--------------|-----------------------------------------------------------------------------|---------------|--------------------------------------------------------------|
+| `type`    | `string`     | Specifies the type of icon to display. Allowed values are `icons` or `symbols`. | `symbols`     | Must be either `icons` or `symbols`; otherwise, an error is thrown. |
+| `name`    | `string`     | Specifies the name of the icon to be displayed.                              | N/A           | Cannot be empty or `null`; an error is thrown if so.           |
+| `style`   | `Style` (custom interface) | An object containing CSS styles to apply to the icon. Allows dynamic styling. | `{}` (empty object) | No validation, but it is an object for CSS styles.              |
+---
 
-### `name`
-
-- **Type:** `string`
-- **Description:** Specifies the name of the icon to be displayed. 
-- **Validation:** If the value is empty or null, an error will be thrown.
-
-### `style`
-
-- **Type:** `Style` (custom interface)
-- **Description:** An object containing CSS styles to apply to the icon. This allows for dynamic styling of the icon.
-- **Default:** An empty object `{}`.
-
-## Example
+### Example
 
 Here’s a simple example of how to use the `IconComponent` in a parent component:
 
@@ -100,14 +84,13 @@ export interface Style {
 }
 ```
 
-# DateRangePickerComponent
+## DateRangePickerComponent
 
 The `DateRangePickerComponent` is a custom Angular component that allows users to select a date range by choosing start and end dates. It includes a calendar view for easy date selection and supports date range validation and keyboard shortcuts for quick navigation.
 
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
@@ -122,30 +105,36 @@ The `DateRangePickerComponent` is a custom Angular component that allows users t
 - **Hover and Range Highlight**: Displays a highlight for dates between the selected range on hover.
 - **Custom Date Format Support**: Configurable date format (default `MM/dd/yyyy`).
 
-## Installation
-
-Add the `DateRangePickerComponent` to your Angular project by copying the component code and required dependencies (like `DatePipe`) to your project.
+### Installation
 
 ```typescript
 import { DateRangePickerComponent } from '@gama/components';
 ```
 
-## Usage
+### Usage
 
-### In HTML
+#### In HTML
 
 To use the date range picker component, include it in your template and bind any necessary inputs and outputs.
 
 ```html
-<app-date-range-picker
+<GDateRangePicker
   [date]="dateRange"
   (emitSaveEvent)="onDateRangeSave($event)"
-></app-date-range-picker>
+></GDateRangePicker>
 ```
 
 ## Inputs
 
-- `date` (`{ from: Date | null; to: Date | null }`): The initial date range to display in the picker. This includes `from` and `to` properties for start and end dates, respectively.
+Here's the table for the newly added properties `date`, `min`, and `max`:
+
+### Date Range Properties Table
+
+| Property        | Type                                  | Description                                                                                               | Default Value                           | Validation                                                       |
+|-----------------|---------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------|------------------------------------------------------------------|
+| `date`          | `{ from: Date \| null, to: Date \| null }` | Defines the initial date range to display in the picker. Contains `from` (start date) and `to` (end date). | `{ from: null, to: null }`              | Both `from` and `to` can either be `Date` or `null`; no strict validation on the date values themselves. |                                | Must emit an object containing both `from` and `to` date values. |
+| `min`           | `Date`                                | Defines the minimum allowed date that can be selected in the date picker.                                 | N/A                                     | Must be a valid `Date` object.                                   |
+| `max`           | `Date`                                | Defines the maximum allowed date that can be selected in the date picker.                                 | N/A                                     | Must be a valid `Date` object.                                   |
 
 ## Outputs
 
@@ -165,16 +154,13 @@ The `DateRangePickerComponent` ensures date range validity through:
 - **Date Comparison**: Disables dates in the "to" tab that are before the selected "from" date, and vice versa.
 - **Input Validation**: When a date is manually entered, it checks if the entered date format is correct and updates the calendar accordingly.
 
-
-Here's a detailed `README` document for your `ButtonComponent`. It covers the attributes, how to use them, and how users can customize the button theming using `--gama-` CSS variables.
-
 ---
 
-# `GButton` Component README
+## `GButton` Component README
 
 The `GButton` component is a highly customizable button component designed to be used with Angular. It supports different button sizes, themes, icons, and various other configurations to provide flexibility in design. This document will guide you on how to use the component, customize its attributes, and adjust its styling with CSS variables.
 
-## Table of Contents:
+### Table of Contents:
 - [Usage](#usage)
   - [Component Selector](#component-selector)
   - [Input Properties](#input-properties)
@@ -187,7 +173,7 @@ The `GButton` component is a highly customizable button component designed to be
 
 ---
 
-## Installation
+### Installation
 
 To install and use the `GButton` component, follow these steps:
 
@@ -211,9 +197,9 @@ To install and use the `GButton` component, follow these steps:
 
 ---
 
-## Usage
+### Usage
 
-### Component Selector
+#### Component Selector
 
 The `GButton` component is used in your HTML as follows:
 
@@ -246,7 +232,7 @@ or
 
 ```
 
-### Input Properties
+#### Input Properties
 
 | Property        | Type                | Description                                                                                                                                      | Default Value      |
 |-----------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
@@ -263,7 +249,7 @@ or
 | `iconName`      | `string | null`      | Name of the icon to be used (e.g., `'check-circle'`).                                                                                           | `null`             |
 | `iconStyle`     | `Style`             | Custom styles for the icon.                                                                                                                     | `{}`               |
 
-### Output Events
+#### Output Events
 
 | Event Name | Description                                    |
 |------------|------------------------------------------------|
@@ -277,24 +263,11 @@ Example:
 
 ---
 
-## Customizing Theming
+### Customizing Theming
 Certainly! Below is the **documentation for theming variables** used in the `GButton` component. The documentation will explain how users can customize the look and feel of the buttons via CSS custom properties (also known as CSS variables), allowing for dynamic theming and styling.
 
 ---
-
-# GButton Component Theming Documentation
-
-## Introduction
-
-The `GButton` component supports theming via CSS custom properties (variables). These variables allow users to easily customize button sizes, paddings, icon sizes, and colors for various button states (e.g., hover, active, and disabled states). You can also customize the appearance of button themes such as `info`, `success`, `warn`, and `alert` buttons, as well as define specific sizes for small, medium, and large buttons.
-
-In this documentation, we explain how you can customize the button’s theme by setting values for these variables.
-
-## Theming Variables Overview
-
-The theming variables are grouped based on button sizes (small, medium, and large), and button types (e.g., info, success, warn, alert). Below is the detailed explanation of each variable you can customize:
-
-### Button Size Variables
+#### Button Size Variables
 
 These variables control the size, padding, border radius, and icon size for different button sizes: **small**, **medium**, and **large**.
 
@@ -336,7 +309,7 @@ You can override the default size variables in your CSS to create custom button 
 
 This will update the size of the buttons across your application.
 
-### Button Theme Variables
+#### Button Theme Variables
 
 The button's theme can be customized using various color and background properties, such as **info**, **success**, **warn**, **alert**, and more. Below are the variables for each theme state.
 
@@ -399,7 +372,7 @@ The button's theme can be customized using various color and background properti
 | `--gama-button-theme-disabled--background-color` | Background color for disabled icon buttons | `$white-600` |
 | `--gama-button-theme-disabled--color` | Text color for disabled icon buttons | `$white-0` |
 
-### How to Customize Button Themes
+#### How to Customize Button Themes
 
 To customize the button themes, you can override these CSS variables in your global stylesheet. For example, to change the background color for the success button in the hover state:
 
@@ -412,7 +385,7 @@ To customize the button themes, you can override these CSS variables in your glo
 }
 ```
 
-### Example of Customizing Button Appearance
+#### Example of Customizing Button Appearance
 
 To make the **small success button** with a custom hover effect and background color, you can override the following:
 
