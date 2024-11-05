@@ -1,17 +1,18 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { Style } from '@gama/interface';
+import { Icon, Style } from '@gama/interface';
 
 
 @Component({
-  selector: 'Button',
+  selector: 'GButton',
   standalone: true,
   imports: [],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
+  
   @Input()
-  title : string = '';
+  title !: string;
 
   @Input()
   style : Style = {};
@@ -20,19 +21,42 @@ export class ButtonComponent {
   disabled : boolean = false;
 
   @Input()
-  buttonType : string = 'primary'
+  type : string = 'primary'
 
   @Input()
-  buttonSize : string = 'medium'
+  theme !: string;
 
   @Input()
-  color : string = 'white'
+  size : string = 'medium'
 
-  buttonClass : string = '';
+  @Input()
+  iconButton : boolean | string = false;
+  
+  @Input()
+  prefixIcon !: Icon;
+  
+  @Input()
+  suffixIcon !: Icon;
+  
+  @Input()
+  iconType: string = 'symbols';
+  
+  @Input()
+  iconName: string | null = null;
+  
+  @Input()
+  iconStyle: Style = {};
+  
+  gamaButtonClass : string = '';
+  
+  @Output() onClick = new EventEmitter<any>();
+
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    this.buttonClass = `gama-${this.color}-${this.buttonType}-${this.buttonSize}-button`
+    this.gamaButtonClass = `gama-button ${this.theme} ${this.type} ${this.size}`;
+    if(this.elementRef.nativeElement.hasAttribute('iconButton')){
+      this.iconButton = true;
+    }
   }
-
-  @Output() onClick = new EventEmitter<MouseEvent>();
 }

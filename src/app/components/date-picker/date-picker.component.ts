@@ -1,14 +1,13 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
-import { Style } from '@gama/interface';
-import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { IconComponent } from '../icon/icon.component';
 import { ButtonComponent } from "../button/button.component";
+import { Style } from '@gama/interface';
 @Component({
-  selector: 'DatePicker',
+  selector: 'GDatePicker',
   standalone: true,
-  imports: [DatePipe, ButtonComponent, IconButtonComponent, IconComponent, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [DatePipe, ButtonComponent, IconComponent, CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss']
 })

@@ -5,12 +5,12 @@
 
   <div class="input-container" (click)="toggleCalendar()">
     @if (iconPosition === 'before' && !hideIcon) {
-    <Icon [name]="iconName" [style]="iconStyle" />
+    <GIcon [name]="iconName" [style]="iconStyle" />
     }
     <input type="text" [value]="selectedDate ? (selectedDate | date: dateFormat) : ''" [placeholder]="placeholder"
       readonly (focus)="toggleCalendar();focus.emit($event)" (blur)="blur.emit($event)" />
     @if (iconPosition === 'after' && !hideIcon) {
-    <Icon [name]="iconName" [style]="iconStyle" />
+    <GIcon [name]="iconName" [style]="iconStyle" />
     }
   </div>
 
@@ -18,10 +18,10 @@
   @if (isCalendarVisible) {
   <div class="calendar-container">
     <div class="calendar-header">
-      <IconButton [style]="defaultIconButtonStyle.style" iconName="keyboard_double_arrow_left"
+      <GButton [style]="defaultIconButtonStyle.style" iconName="keyboard_double_arrow_left"
         [iconStyle]="defaultIconButtonStyle.iconStyle" (onClick)="changeMonth(-1)" />
       <span>{{ months[currentMonth] }} {{ currentYear }}</span>
-      <IconButton [style]="defaultIconButtonStyle.style" iconName="keyboard_double_arrow_right"
+      <GButton [style]="defaultIconButtonStyle.style" iconName="keyboard_double_arrow_right"
         [iconStyle]="defaultIconButtonStyle.iconStyle" (onClick)="changeMonth(1)" />
     </div>
 

@@ -3,7 +3,7 @@ import { Style } from '@gama/interface';
 
 
 @Component({
-  selector: 'Icon',
+  selector: 'GIcon',
   standalone: true,
   imports: [],
   templateUrl: './icon.component.html',

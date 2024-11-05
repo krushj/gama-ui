@@ -4,7 +4,7 @@
     <!-- Tab Toggle -->
     <div class="toggle-container">
       @if (fromDate || toDate) {
-        <IconButton 
+        <GButton 
         [style]="{'box-shadow': 'none', color: (fromDate && toDate) ? '#333333': '#777777', 'border-radius':'1rem', height: '1.5rem', width: '1.5rem', marginRight: '0.25rem'}"
         [iconStyle]="{fontSize: '0.75rem'}" iconName="save"
         [disabled]="(!fromDate || !toDate)"
@@ -50,14 +50,14 @@
   <!-- Calendar Navigation -->
   <div class="calendar-container">
     <div class="calendar-header">
-      <IconButton 
+      <GButton 
         [style]="defaultIconButtonStyle.style"
         iconName="keyboard_double_arrow_left" 
         [iconStyle]="defaultIconButtonStyle.iconStyle"
         (onClick)="changeMonth(-1)"
       />
       <span>{{ months[currentMonth] }} {{ currentYear }}</span>
-      <IconButton 
+      <GButton 
         [style]="defaultIconButtonStyle.style"
         iconName="keyboard_double_arrow_right" 
         [iconStyle]="defaultIconButtonStyle.iconStyle"

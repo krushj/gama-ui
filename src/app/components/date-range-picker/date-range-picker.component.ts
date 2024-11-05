@@ -2,13 +2,12 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Ou
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { ButtonComponent } from "../button/button.component";
-import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
-  selector: 'DateRangePicker',
+  selector: 'GDateRangePicker',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, ButtonComponent, IconButtonComponent, IconComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, ButtonComponent, ButtonComponent, IconComponent],
   providers: [DatePipe],
   templateUrl: './date-range-picker.component.html',
   styleUrls: ['./date-range-picker.component.scss']
