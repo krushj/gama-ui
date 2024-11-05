@@ -34,7 +34,9 @@ export class DateRangePickerComponent implements OnChanges{
 
   @Output() emitSaveEvent = new EventEmitter<{from : Date | null, to : Date | null}>();
 
-
+  // following properties defines the range for given date
+  @Input() min !: Date;
+  @Input() max !: Date;
 
   constructor(private datePipe: DatePipe) {
     this.generateCalendar();
@@ -89,7 +91,9 @@ export class DateRangePickerComponent implements OnChanges{
 
   isDisabledDate(date: number) {
     return (this.activeTab === 'to' && this.fromDate && new Date(this.currentYear, this.currentMonth, date) < this.fromDate) ||
-      (this.activeTab === 'from' && this.toDate && new Date(this.currentYear, this.currentMonth, date) > this.toDate)
+      (this.activeTab === 'from' && this.toDate && new Date(this.currentYear, this.currentMonth, date) > this.toDate) ||
+      (this.min && new Date(this.currentYear, this.currentMonth, date) < this.min) || 
+            (this.max && new Date(this.currentYear, this.currentMonth, date) > this.max)
   }
 
   // Listen for keydown events
