@@ -14,17 +14,28 @@ import { ButtonComponent } from "../button/button.component";
 })
 export class DatePickerComponent {
   @Input() formControl!: UntypedFormControl;
-  @Input() ngModel !: Date | null;
-  @Input() dateFormat: string = 'mm/dd/yyyy';
+  @Input() ngModel !: Date;
+  @Input() dateFormat: string = 'MM/dd/yyyy';
   @Input() label!: string;
   @Input() placeholder: string = this.dateFormat;
   @Input() disabled: boolean = false;
 
+
+  // wether the calender icon should be shown 
   @Input() hideIcon: boolean = false;
+
+  // icon name to show the custom icon
   @Input() iconName: string = 'calendar_today';
+
+  // icon position to render before input or after input
   @Input() iconPosition: string = 'before';
+
+  // some default custom icon style
   @Input() iconStyle: Style = {fontSize: '14px'}
 
+  // following properties defines the range for given date
+  @Input() min !: Date;
+  @Input() max !: Date;
 
   @Output() ngModelChange = new EventEmitter<Date | null>();
   @Output() focus = new EventEmitter<FocusEvent>();
@@ -42,6 +53,11 @@ export class DatePickerComponent {
                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   calendarDays: number[] = [];
 
+  defaultIconButtonStyle = {
+    style: {'box-shadow': 'none', color: '#333333'},
+    iconStyle: {fontSize: '1rem'}
+  }
+
   constructor(private elementRef: ElementRef) {
     this.generateCalendar();
   }
@@ -53,6 +69,8 @@ export class DatePickerComponent {
       this.formControl.valueChanges.subscribe((date: Date | null) => {
         this.selectedDate = date;
       });
+    } else {
+      this.selectedDate = this.ngModel ?? new Date();
     }
   }
 
@@ -112,5 +130,10 @@ export class DatePickerComponent {
     return this.selectedDate.getFullYear() === this.currentYear &&
            this.selectedDate.getMonth() === this.currentMonth &&
            this.selectedDate.getDate() === day;
+  }
+
+  isDisabledDate(day: number) {
+    return (this.min && new Date(this.currentYear, this.currentMonth, day) < this.min) || 
+            (this.max && new Date(this.currentYear, this.currentMonth, day) > this.max);
   }
 }
