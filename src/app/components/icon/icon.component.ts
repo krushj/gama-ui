@@ -13,7 +13,7 @@ export class IconComponent {
   @Input()
   type: string = 'symbols';
   
-  @Input()
+  @Input({required: true})
   name: string | null = null;
 
   @Input()

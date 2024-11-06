@@ -11,45 +11,33 @@ import { Icon, Style } from '@gama/interface';
 })
 export class ButtonComponent {
   
-  @Input()
-  title !: string;
+  @Input() title !: string;
 
-  @Input()
-  style : Style = {};
+  @Input() style : Style = {};
 
-  @Input()
-  disabled : boolean = false;
+  @Input() disabled : boolean = false;
 
-  @Input()
-  type : string = 'primary'
+  @Input() type : string = 'primary'
 
-  @Input()
-  theme !: string;
+  @Input() theme !: string;
 
-  @Input()
-  size : string = 'medium'
+  @Input() size : string = 'large'
 
-  @Input()
-  iconButton : boolean | string = false;
+  @Input() iconButton : boolean | string = false;
   
-  @Input()
-  prefixIcon !: Icon;
+  @Input() prefixIcon !: Icon;
   
-  @Input()
-  suffixIcon !: Icon;
+  @Input() suffixIcon !: Icon;
   
-  @Input()
-  iconType: string = 'symbols';
+  @Input() iconType: string = 'symbols';
   
-  @Input()
-  iconName: string | null = null;
+  @Input() iconName: string | null = null;
   
-  @Input()
-  iconStyle: Style = {};
-  
-  gamaButtonClass : string = '';
+  @Input() iconStyle: Style = {};
   
   @Output() onClick = new EventEmitter<any>();
+  
+  gamaButtonClass : string = '';
 
   constructor(private elementRef: ElementRef) {}
 
