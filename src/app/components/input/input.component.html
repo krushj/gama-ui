@@ -1,0 +1,58 @@
+<div class="gama-input {{theme}} {{border}} {{appearance}}" [ngClass]="{'disabled': disabled, 'prefix': hasPrefix, 'suffix': hasSuffix, 'error': hasError, 'focused': focused}">
+    @if (label) {
+        <span (click)="_focusInput()" class="input-label">{{ label }}</span>
+    }
+      
+    <div class="input-container" (click)="_focusInput()">
+        @if (hasPrefix) {
+            <div class="prefix-container" #prefixContainer>
+                <ng-content select="[prefix]"></ng-content>
+            </div>
+        }
+        @if(formControl){
+            <input 
+            #inputControl
+            class="input-control"
+            [type]="type" 
+            [placeholder]="placeholder"
+            [autocomplete]="autocomplete"
+            [readonly]="readonly"
+            [formControl]="formControl"
+            [disabled]="disabled"
+            (focus)="focused = true; focus.emit($event)" 
+            (blur)="focused = false; blur.emit($event)" 
+            (input)="input.emit($event)" 
+            />
+        } @else {
+            <input 
+            #inputControl
+            class="input-control"
+            [type]="type" 
+            [placeholder]="placeholder"
+            [autocomplete]="autocomplete"
+            [readonly]="readonly"
+            [disabled]="disabled"
+            [(ngModel)]="ngModel" 
+            (ngModelChange)="ngModelChange.emit($event)"
+            (focus)="focused = true; focus.emit($event)" 
+            (blur)="focused = false; blur.emit($event)" 
+            (input)="input.emit($event)" 
+            />
+        }
+        @if (hasSuffix) {
+            <div class="suffix-container" #suffixContainer>
+                <ng-content select="[suffix]"></ng-content>
+            </div>
+        }
+    </div>
+    @if (hasError) {
+        <div class="error-container" #errorContainer>
+            <ng-content select="[error]"></ng-content>
+        </div>
+    } 
+    @if (hasHint) {
+        <div class="hint-container" #hintContainer>
+            <ng-content select="[hint]"></ng-content>
+        </div>
+    }
+</div>

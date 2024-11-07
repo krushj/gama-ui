@@ -1,0 +1,228 @@
+@import '@styles/variables.scss';
+
+$input--height: var(--gama-input--height, 1.875rem);
+$input--font-size: var(--gama-input--font-size, 0.875rem);
+$input--font-size-scale: var(--gama-input--font-size-scale, 0.25rem);
+$input--line-height: var(--gama-input--line-height, 1.25rem);
+
+
+$input--border-primary-radius: var(--gama-input-primary--border-radius, 0.5rem);
+$input--border-secondary-radius: var(--gama-input-secondary--border-radius, 999rem);
+
+// border themes
+$input--border: var(--gama-input--border, 1px solid $white-600);
+$input-info--border: var(--gama-input-info--border, 1px solid $blue-600);
+$input-success--border: var(--gama-input-success--border, 1px solid $green-600);
+$input-warn--border: var(--gama-input-warn--border, 1px solid $yellow-600);
+$input-alert--border: var(--gama-input-alert--border, 1px solid $red-600);
+
+// hover border themes
+$input-hover--border: var(--gama-input-hover--border, 1px solid $white-700);
+$input-hover-info--border: var(--gama-input-hover-info--border, 1px solid $blue-700);
+$input-hover-success--border: var(--gama-input-hover-success--border, 1px solid $green-700);
+$input-hover-warn--border: var(--gama-input-hover-warn--border, 1px solid $yellow-700);
+$input-hover-alert--border: var(--gama-input-hover-alert--border, 1px solid $red-700);
+
+// focus border themes
+$input-focus--border: var(--gama-input-focus--border, 1px solid $white-800);
+$input-focus-info--border: var(--gama-input-focus-info--border, 1px solid $blue-800);
+$input-focus-success--border: var(--gama-input-focus-success--border, 1px solid $green-800);
+$input-focus-warn--border: var(--gama-input-focus-warn--border, 1px solid $yellow-800);
+$input-focus-alert--border: var(--gama-input-focus-alert--border, 1px solid $red-800);
+
+// disabled border themes
+$input-disabled--border: var(--gama-input-disabled--border, 1px solid $black-100);
+
+// background themes
+$input--background: var(--gama-input--background, $white-0);
+$input-info--background: var(--gama-input-info--background, $blue-0);
+$input-success--background: var(--gama-input-success--background, $green-0);
+$input-warn--background: var(--gama-input-warn--background, $yellow-0);
+$input-alert--background: var(--gama-input-alert--background, $red-0);
+
+// hover background themes
+$input-hover--background: var(--gama-input-hover--background, $white-100);
+$input-hover-info--background: var(--gama-input-hover-info--background, $blue-100);
+$input-hover-success--background: var(--gama-input-hover-success--background, $green-100);
+$input-hover-warn--background: var(--gama-input-hover-warn--background, $yellow-100);
+$input-hover-alert--background: var(--gama-input-hover-alert--background, $red-100);
+
+// focus background themes
+$input-focus--background: var(--gama-input-focus--background, $white-200);
+$input-focus-info--background: var(--gama-input-focus-info--background, $blue-200);
+$input-focus-success--background: var(--gama-input-focus-success--background, $green-200);
+$input-focus-warn--background: var(--gama-input-focus-warn--background, $yellow-200);
+$input-focus-alert--background: var(--gama-input-focus-alert--background, $red-200);
+
+// disabled background themes
+$input-disabled--background: var(--gama-input-disabled--background, $white-200);
+
+
+// color themes
+$input--color: var(--gama-input--color, $black-600);
+$input-info--color: var(--gama-input-info--color, $blue-600);
+$input-success--color: var(--gama-input-success--color, $green-600);
+$input-warn--color: var(--gama-input-warn--color, $yellow-600);
+$input-alert--color: var(--gama-input-alert--color, $red-600);
+
+// hover color themes
+$input-hover--color: var(--gama-input-hover--color, $black-700);
+$input-hover-info--color: var(--gama-input-hover-info--color, $blue-700);
+$input-hover-success--color: var(--gama-input-hover-success--color, $green-700);
+$input-hover-warn--color: var(--gama-input-hover-warn--color, $yellow-700);
+$input-hover-alert--color: var(--gama-input-hover-alert--color, $red-700);
+
+// focus color themes
+$input-focus--color: var(--gama-input-focus--color, $black-800);
+$input-focus-info--color: var(--gama-input-focus-info--color, $blue-800);
+$input-focus-success--color: var(--gama-input-focus-success--color, $green-800);
+$input-focus-warn--color: var(--gama-input-focus-warn--color, $yellow-800);
+$input-focus-alert--color: var(--gama-input-focus-alert--color, $red-800);
+
+// disabled color themes
+$input-disabled--color: var(--gama-input-disabled--color, $black-200);
+
+@mixin input-themes($bgColor, $border, $borderRadius, $color){
+    &.outline{
+        .input-label, .input-container{
+            border: $border;
+        }
+        .input-label{
+            border-bottom: none;
+        }
+    } 
+    &.fill{
+        .input-container{
+            border-bottom: $border;
+        }
+    }
+    .input-label, .input-container{
+        background-color: $bgColor;
+    } 
+    .hint-container, .error-container, .input-label, .input-container{
+        color: $color;
+    }
+}
+.gama-input {
+    .input-label, .error-container, .hint-container, .input-container{
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .input-label, .error-container, .hint-container{
+        font-size: calc($input--font-size - $input--font-size-scale);
+    }
+    .input-label, .error-container{
+        margin-left: 0.5rem;
+    }
+    .hint-container{
+        float: right;
+        margin-right: 0.5rem;
+    }
+    .input-label{
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      background-color: $white-0;
+      color: $black-300;
+    }
+
+    &.primary{
+        .input-container{
+            border-radius: $input--border-primary-radius;
+        }
+        .input-label{
+            border-radius: $input--border-primary-radius $input--border-primary-radius 0 0;
+        }
+    }
+    &.secondary{
+        .input-container{
+            border-radius: $input--border-secondary-radius;
+        }
+        .input-label{
+            border-radius: $input--border-secondary-radius $input--border-secondary-radius 0 0;
+        }
+    }
+    .input-container{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      margin-bottom: 0.25rem;
+      .input-control {
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        cursor: inherit;
+        background-color: inherit;
+        color: inherit;
+        text-overflow: ellipsis;
+        &:disabled{
+            background-color: inherit;
+            color: inherit;
+        }
+        &::placeholder{
+            color: $black-100;
+        }
+      }
+    }
+    &.prefix .input-container{
+        padding-inline-start: 0.5rem;
+    }
+
+    
+    &:not(.disabled){
+        @include input-themes($input--background, $input--border, $input--border-primary-radius, $input--color); 
+        &:hover{
+            @include input-themes($input-hover--background, $input-hover--border, $input--border-primary-radius, $input-hover--color); 
+        }
+        &.focused{
+            @include input-themes($input-focus--background, $input-focus--border, $input--border-primary-radius, $input-focus--color); 
+        }
+        &.info{
+            @include input-themes($input-info--background, $input-info--border, $input--border-primary-radius, $input-info--color); 
+            &:hover{
+                @include input-themes($input-hover-info--background, $input-hover-info--border, $input--border-primary-radius, $input-hover-info--color); 
+            }
+            &.focused{
+                @include input-themes($input-focus-info--background, $input-focus-info--border, $input--border-primary-radius, $input-focus-info--color); 
+            }
+    
+        }
+        &.success{
+            @include input-themes($input-success--background, $input-success--border, $input--border-primary-radius, $input-success--color); 
+            &:hover{
+                @include input-themes($input-hover-success--background, $input-hover-success--border, $input--border-primary-radius, $input-hover-success--color); 
+            }
+            &.focused{
+                @include input-themes($input-focus-success--background, $input-focus-success--border, $input--border-primary-radius, $input-focus-success--color); 
+            }
+        }
+        &.warn{
+            @include input-themes($input-warn--background, $input-warn--border, $input--border-primary-radius, $input-warn--color); 
+            &:hover{
+                @include input-themes($input-hover-warn--background, $input-hover-warn--border, $input--border-primary-radius, $input-hover-warn--color); 
+            }
+            &.focused{
+                @include input-themes($input-focus-warn--background, $input-focus-warn--border, $input--border-primary-radius, $input-focus-warn--color); 
+            }
+        }
+        &.alert{
+            @include input-themes($input-alert--background, $input-alert--border, $input--border-primary-radius, $input-alert--color); 
+            &:hover{
+                @include input-themes($input-hover-alert--background, $input-hover-alert--border, $input--border-primary-radius, $input-hover-alert--color); 
+            }
+            &.focused{
+                @include input-themes($input-focus-alert--background, $input-focus-alert--border, $input--border-primary-radius, $input-focus-alert--color); 
+            }
+        }
+    }
+    
+    &.disabled{
+        .input-label, .input-container{
+            cursor: default;
+          }
+        @include input-themes($input-disabled--background, $input-disabled--border, $input--border-primary-radius, $input-disabled--color); 
+    }
+    
+  }
+  
