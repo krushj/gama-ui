@@ -9,7 +9,9 @@
       "@styles/*": ["styles/*"],
       "@gama/components": ["app/components"],
       "@gama/interface": ["app/interface"],
-      "@gama/pipe": ["app/pipe"]
+      "@gama/pipe": ["app/pipe"],
+      "@gama/view": ["app/view"],
+
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
