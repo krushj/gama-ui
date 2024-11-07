@@ -1,6 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { Icon, Style } from '@gama/interface';
 
+type GamaButtonType = 'primary' | 'secondary' | 'tertiary';
+type GamaButtonSize = 'small' | 'medium' | 'large';
+type GamaButtonTheme = '' | 'info' | 'success' | 'warn' | 'alert';
+type GamaIconType = 'symbols' | 'icons';
 
 @Component({
   selector: 'GButton',
@@ -17,11 +21,11 @@ export class ButtonComponent {
 
   @Input() disabled : boolean = false;
 
-  @Input() type : string = 'primary'
+  @Input() type : GamaButtonType = 'primary'
 
-  @Input() theme !: string;
+  @Input() theme : GamaButtonTheme = '';
 
-  @Input() size : string = 'large'
+  @Input() size : GamaButtonSize = 'large'
 
   @Input() iconButton : boolean | string = false;
   
@@ -29,7 +33,7 @@ export class ButtonComponent {
   
   @Input() suffixIcon !: Icon;
   
-  @Input() iconType: string = 'symbols';
+  @Input() iconType: GamaIconType = 'symbols';
   
   @Input() iconName: string | null = null;
   

@@ -128,7 +128,7 @@ $disabled-icon-button-color: var(--gama-button-theme-disabled--color, $white-0);
     animation-timing-function: ease-out;
     animation-duration: 300ms;
     &:disabled{
-        cursor: not-allowed;
+        cursor: default;
     }
 
     // size classes
