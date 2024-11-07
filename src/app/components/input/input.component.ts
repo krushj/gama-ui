@@ -4,6 +4,8 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, UntypedFormControl
 
 type GamaInputAppearanceStyle = 'fill' | 'outline';
 type GamaInputBorderRadiusStyle = 'primary' | 'secondary';
+type GamaInputTheme = '' | 'info' | 'success' | 'warn' | 'alert';
+
 
 @Component({
   selector: 'GInput',
@@ -39,7 +41,7 @@ export class InputComponent {
   @Input() formControl !: UntypedFormControl;
   @Input() ngModel !: any;
 
-  @Input() theme !: string;
+  @Input() theme : GamaInputTheme = '';
   @Input() border : GamaInputBorderRadiusStyle = 'primary';
   @Input() appearance : GamaInputAppearanceStyle = 'outline';
 
