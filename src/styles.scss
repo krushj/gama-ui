@@ -638,6 +638,18 @@ $colors: (
 .grid {
     display: grid;
 }
+.grid-col-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+.grid-col-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+.grid-col-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+.grid-col-8 {
+    grid-template-columns: repeat(8, 1fr);
+}
 
 .inline-grid {
     display: inline-grid;
