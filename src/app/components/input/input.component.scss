@@ -1,6 +1,6 @@
 @import '@styles/variables.scss';
 
-$input--height: var(--gama-input--height, 1.875rem);
+$input--height: var(--gama-input--height, 2.5rem);
 $input--font-size: var(--gama-input--font-size, 0.875rem);
 $input--font-size-scale: var(--gama-input--font-size-scale, 0.25rem);
 $input--line-height: var(--gama-input--line-height, 1.25rem);
@@ -141,6 +141,8 @@ $input-disabled--color: var(--gama-input-disabled--color, $black-200);
         }
     }
     .input-container{
+      box-sizing: border-box;
+      height: $input--height;
       display: flex;
       flex-direction: row;
       align-items: center;

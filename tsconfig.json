@@ -11,6 +11,7 @@
       "@gama/interface": ["app/interface"],
       "@gama/pipe": ["app/pipe"],
       "@gama/view": ["app/view"],
+      "@gama/services": ["app/services"]
 
     },
     "noImplicitOverride": true,

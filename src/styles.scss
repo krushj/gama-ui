@@ -638,6 +638,9 @@ $colors: (
 .grid {
     display: grid;
 }
+.grid-col-full {
+    grid-column: 1 / -1;
+}
 .grid-col-2 {
     grid-template-columns: repeat(2, 1fr);
 }
@@ -811,12 +814,10 @@ $px-to-rem: (
     0: 0rem,
     2: 0.125rem,
     4: 0.25rem,
-    5: 0.3125rem,
     6: 0.375rem,
     8: 0.5rem,
     12: 0.75rem,
     14: 0.875rem,
-    15: 0.9375rem,
     16: 1rem,
     20: 1.25rem,
     24: 1.5rem,
@@ -839,6 +840,21 @@ $px-to-rem: (
 @each $size, $rem-value in $px-to-rem {
     @if $size <=40 {
 
+        @if $size <= 10 {
+            .top-#{$size} {
+                top: #{$rem-value};
+            }
+            .bottom-#{$size} {
+                bottom: #{$rem-value};
+            }
+            .left-#{$size} {
+                left: #{$rem-value};
+            }
+            .right-#{$size} {
+                right: #{$rem-value};
+            }
+    
+        }
         // padding
         .pt-#{$size} {
             padding-top: #{$rem-value};
