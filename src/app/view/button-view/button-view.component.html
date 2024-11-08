@@ -1,0 +1,68 @@
+<div class="flex flex-col gap-x-12">
+    @for (disabled of disableStatus; track $index){
+        <div [attr.data-aos]="disabled ? 'fade-up-right' : 'fade-up-left'" class="grid grid-col-6 gap-x-16 gap-y-8">
+            <!-- normal button -->
+            @for (size of sizes; track $index){
+            <div class="h-100 w-100 flex flex-col bg-white-200 rounded-md p-12 gap-x-8">
+                <div class="flex-row-reverse flex">
+                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                        (click)="copySnippet($event, {key: 'defaultButton', params: {size, disabled}})">
+                    </GIcon>
+                </div>
+                <div class="flex flex-row items-center justify-center flex-1">
+                    <GButton title="Click Me" [size]="size" [disabled]="disabled" />
+                </div>
+            </div>
+            }
+    
+    
+            <!-- normal icon button -->
+            @for (size of sizes; track $index){
+            <div class="h-100 w-100 flex flex-col bg-white-200 rounded-md p-12 gap-x-8">
+                <div class="flex-row-reverse flex">
+                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                        (click)="copySnippet($event, {key: 'defaultIconButton', params: {size, disabled}})">
+                    </GIcon>
+                </div>
+                <div class="flex flex-row items-center justify-center flex-1">
+                    <GButton [iconButton]="true" iconName="search" [size]="size" [disabled]="disabled"/>
+                </div>
+            </div>
+            }
+        </div>
+    }
+
+
+    @for (theme of themes; track $index;){
+        <div class="grid grid-col-6 gap-x-16 gap-y-8">
+            @for (type of types; track $index){
+            @for (size of sizes; track $index; let e = $even){
+            <div [attr.data-aos]="e ? 'fade-up-right' : 'fade-up-left'" class="h-100 w-100 flex flex-col bg-white-200 rounded-md p-12 gap-x-8">
+                <div class="flex-row-reverse flex">
+                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                        (click)="copySnippet($event, {key: 'themeButton', params: {size, type, theme}})">
+                    </GIcon>
+                </div>
+                <div class="flex flex-row items-center justify-center flex-1">
+                    <GButton title="Click Me" [size]="size" [type]="type" [theme]="theme" />
+                </div>
+            </div>
+            }
+
+            @for (size of sizes; track $index; let e = $even){
+            <div [attr.data-aos]="!e ? 'fade-up-right' : 'fade-up-left'" class="h-100 w-100 flex flex-col bg-white-200 rounded-md p-12 gap-x-8">
+                <div class="flex-row-reverse flex">
+                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                        (click)="copySnippet($event, {key: 'themeIconButton', params: {size, type, theme}})">
+                    </GIcon>
+                </div>
+                <div class="flex flex-row items-center justify-center flex-1">
+                    <GButton [iconButton]="true" iconName="search" [size]="size" [type]="type" [theme]="theme" />
+                </div>
+            </div>
+            }
+            }
+
+        </div>
+    }
+</div>
