@@ -1,4 +1,4 @@
-<button class="{{gamaButtonClass}} {{iconButton?'icon-button':''}}" (click)="onClick.emit($event)" [disabled]="disabled" [style]="style">
+<button class="{{gamaButtonClass}} {{border}}-border" [ngClass]="{'icon-button': iconButton}" (click)="onClick.emit($event)" [disabled]="disabled" [style]="style">
     @if (iconButton){
         <span class="material-{{iconType}}-outlined gama-icon" [style]="iconStyle">
             {{iconName}}

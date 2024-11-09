@@ -1,28 +1,28 @@
 @import '@styles/variables.scss';
 
+$button--border-primary-radius: var(--gama-button-primary--border-radius, 0.5rem);
+$button--border-secondary-radius: var(--gama-button-secondary--border-radius, 999rem);
+
 // small button
 $smallButtonSize : var(--gama-button-small--size, 1.5rem); // 24px
 $smallButtonPadding : var(--gama-button-small--padding, 0.25rem); // 4px padding
-$smallButtonBorderRadius : var(--gama-button-small--border-radius, 0.25rem); // 4px border radius
 $smallButtonIconSize : var(--gama-button-small--icon-size, 1rem); // 16px icon size
 $smallButtonColumnGap : var(--gama-button-small--column-gap, 0.125rem); // 2px gap between icon and text
-$smallButtonFontSize : var(--gama-button-small--font-size, 0.75rem); // 12px font size
+$smallButtonFontSize : var(--gama-button-small--font-size, 0.625rem); // 12px font size
 
 // medium button
 $mediumButtonSize : var(--gama-button-medium--size, 2.25rem); // 36px
 $mediumButtonPadding : var(--gama-button-medium--padding, 0.375rem); // 6px padding
-$mediumButtonBorderRadius : var(--gama-button-medium--border-radius, 0.25rem); // 4px border radius
 $mediumButtonIconSize : var(--gama-button-medium--icon-size, 1.25rem); // 20px icon size
 $mediumButtonColumnGap : var(--gama-button-medium--column-gap, 0.25rem); // 4px gap between icon and text
-$mediumButtonFontSize : var(--gama-button-medium--font-size, 0.875rem); // 14px font size
+$mediumButtonFontSize : var(--gama-button-medium--font-size, 0.75rem); // 14px font size
 
 // large button
 $largeButtonSize : var(--gama-button-large--size, 2.5rem); // 40px
 $largeButtonPadding : var(--gama-button-large--padding, 0.5rem); // 8px padding
-$largeButtonBorderRadius : var(--gama-button-large--border-radius, 0.25rem); // 4px border radius
 $largeButtonIconSize : var(--gama-button-large--icon-size, 1.375rem); // 22px icon size
 $largeButtonColumnGap : var(--gama-button-large--column-gap, 0.375rem); // 6px gap between icon and text
-$largeButtonFontSize : var(--gama-button-large--font-size, 1rem); // 16px font size
+$largeButtonFontSize : var(--gama-button-large--font-size, 0.875rem); // 16px font size
 
 
 // info icon button themes
@@ -98,8 +98,15 @@ $disabled-icon-button-color: var(--gama-button-theme-disabled--color, $white-0);
 }
 @mixin gama-icon-button-size-mixin($buttonSize, $padding, $borderRadius, $iconSize, $columnGap, $fontSize){
     height: $buttonSize;
-    width: $buttonSize;
-    padding: $padding;
+    &.icon-button{
+        width: $buttonSize;
+        padding: $padding;
+    }
+    &:not(.icon-button){
+        padding-block: $padding;
+        padding-inline: calc($padding * 2);
+
+    }
     border-radius: $borderRadius;
     column-gap: $columnGap;
     font-size: $fontSize ;
@@ -123,6 +130,14 @@ $disabled-icon-button-color: var(--gama-button-theme-disabled--color, $white-0);
     justify-content: center;
     cursor: pointer;
     background-color: $white-0;
+    border: 1px solid $white-0;
+    box-sizing: border-box;
+    &:hover{
+        border: 1px solid $white-600;
+    }
+    &:active{
+        background-color: $white-200;
+    }
     box-shadow: 0 0.125rem 0.25rem rgba(51, 51, 51, 0.016);
     color: $black-600;
     animation-timing-function: ease-out;
@@ -132,30 +147,28 @@ $disabled-icon-button-color: var(--gama-button-theme-disabled--color, $white-0);
     }
 
     // size classes
-    &.small{
-       @include gama-icon-button-size-mixin($smallButtonSize, $smallButtonPadding, $smallButtonBorderRadius, $smallButtonIconSize, $smallButtonColumnGap, $smallButtonFontSize);
-    }
-    &.medium{
-        @include gama-icon-button-size-mixin($mediumButtonSize, $mediumButtonPadding, $mediumButtonBorderRadius, $mediumButtonIconSize, $mediumButtonColumnGap, $mediumButtonFontSize);
-    }
-    &.large{
-        @include gama-icon-button-size-mixin($largeButtonSize, $largeButtonPadding, $largeButtonBorderRadius, $largeButtonIconSize, $largeButtonColumnGap, $largeButtonFontSize);
-    }
-
-    &:not(.icon-button){
-        width: auto;
-
+    &.primary-border{
         &.small{
-            padding-inline: calc($smallButtonSize / 2);
+           @include gama-icon-button-size-mixin($smallButtonSize, $smallButtonPadding, $button--border-primary-radius, $smallButtonIconSize, $smallButtonColumnGap, $smallButtonFontSize);
         }
         &.medium{
-            padding-inline: calc($mediumButtonSize / 3);
+            @include gama-icon-button-size-mixin($mediumButtonSize, $mediumButtonPadding, $button--border-primary-radius, $mediumButtonIconSize, $mediumButtonColumnGap, $mediumButtonFontSize);
         }
         &.large{
-            padding-inline: calc($largeButtonSize / 4);
+            @include gama-icon-button-size-mixin($largeButtonSize, $largeButtonPadding, $button--border-primary-radius, $largeButtonIconSize, $largeButtonColumnGap, $largeButtonFontSize);
         }
     }
-
+    &.secondary-border{
+         &.small{
+            @include gama-icon-button-size-mixin($smallButtonSize, $smallButtonPadding, $button--border-secondary-radius, $smallButtonIconSize, $smallButtonColumnGap, $smallButtonFontSize);
+         }
+         &.medium{
+             @include gama-icon-button-size-mixin($mediumButtonSize, $mediumButtonPadding, $button--border-secondary-radius, $mediumButtonIconSize, $mediumButtonColumnGap, $mediumButtonFontSize);
+         }
+         &.large{
+             @include gama-icon-button-size-mixin($largeButtonSize, $largeButtonPadding, $button--border-secondary-radius, $largeButtonIconSize, $largeButtonColumnGap, $largeButtonFontSize);
+         }
+    }
 
     &.primary{
         &.info{

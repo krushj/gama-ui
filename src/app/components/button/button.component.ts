@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { Icon, Style } from '@gama/interface';
 
@@ -5,11 +6,13 @@ type GamaButtonType = 'primary' | 'secondary' | 'tertiary';
 type GamaButtonSize = 'small' | 'medium' | 'large';
 type GamaButtonTheme = '' | 'info' | 'success' | 'warn' | 'alert';
 type GamaIconType = 'symbols' | 'icons';
+type GamaButtonBorderRadiusStyle = 'primary' | 'secondary';
+
 
 @Component({
   selector: 'GButton',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
 })
@@ -24,6 +27,8 @@ export class ButtonComponent {
   @Input() type : GamaButtonType = 'primary'
 
   @Input() theme : GamaButtonTheme = '';
+
+  @Input() border : GamaButtonBorderRadiusStyle = 'primary';
 
   @Input() size : GamaButtonSize = 'large'
 
