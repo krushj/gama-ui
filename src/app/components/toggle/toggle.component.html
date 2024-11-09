@@ -1,0 +1,16 @@
+<div class="gama-toggle {{theme}} {{size}}" [ngClass]="{'disabled': disabled || (formControl && formControl.disabled)}">
+    @if(beforeLabel){
+    <span class="label" [ngClass]="{'default': !this.afterLabel }" (click)="_toggleCheckbox(false)">{{beforeLabel}}</span>
+    }
+    <label class="switch">
+        @if (formControl){
+            <input #checkbox type="checkbox" (change)="_change($event)" [formControl]="formControl">
+        } @else{
+            <input #checkbox type="checkbox" (change)="_change($event)" [checked]="checked" [disabled]="disabled">
+        }
+        <span class="slider"></span>
+    </label>
+    @if(afterLabel){
+        <span class="label" [ngClass]="{'default': !this.beforeLabel }" (click)="_toggleCheckbox(true)">{{afterLabel}}</span>
+    }
+</div>

@@ -1,0 +1,210 @@
+@import '@styles/variables.scss';
+
+$toggle--height: var(--gama-toggle--height, 2.5rem);
+$toggle--font-size: var(--gama-toggle--font-size, 0.875rem);
+$toggle--font-size-scale: var(--gama-toggle--font-size-scale, 0.25rem);
+$toggle--line-height: var(--gama-toggle--line-height, 1.25rem);
+
+$toggle-small--height: var(--gama-toggle-small--height, 1.5rem);
+$toggle-medium--height: var(--gama-toggle-medium--height, 2.25rem);
+$toggle-large--height: var(--gama-toggle-large--height, 2.5rem);
+
+$toggle-small--width: var(--gama-toggle-small--width, 2.5rem);
+$toggle-medium--width: var(--gama-toggle-medium--width, 3.75rem);
+$toggle-large--width: var(--gama-toggle-large--width, 4.25rem);
+
+
+$toggle--border-primary-radius: var(--gama-toggle-primary--border-radius, 0.5rem);
+
+// border unchecked themes
+$toggle-unchecked--border: var(--gama-toggle-unchecked--border, 1px solid $white-500);
+$toggle-unchecked-info--border: var(--gama-toggle-unchecked-info--border, 1px solid $blue-600);
+$toggle-unchecked-success--border: var(--gama-toggle-unchecked-success--border, 1px solid $green-600);
+$toggle-unchecked-warn--border: var(--gama-toggle-unchecked-warn--border, 1px solid $yellow-600);
+$toggle-unchecked-alert--border: var(--gama-toggle-unchecked-alert--border, 1px solid $red-600);
+$toggle-unchecked-disabled--border: var(--gama-toggle-unchecked-disabled--border, 1px solid $white-600);
+
+// border checked themes
+$toggle-checked--border: var(--gama-toggle-checked--border, 1px solid $black-200);
+$toggle-checked-info--border: var(--gama-toggle-checked-info--border, 1px solid $blue-600);
+$toggle-checked-success--border: var(--gama-toggle-checked-success--border, 1px solid $green-600);
+$toggle-checked-warn--border: var(--gama-toggle-checked-warn--border, 1px solid $yellow-600);
+$toggle-checked-alert--border: var(--gama-toggle-checked-alert--border, 1px solid $red-600);
+$toggle-checked-disabled--border: var(--gama-toggle-checked-disabled--border, 1px solid $white-600);
+
+// background unchecked themes
+$toggle-unchecked--background: var(--gama-toggle-unchecked--background, $white-0);
+$toggle-unchecked-info--background: var(--gama-toggle-unchecked-info--background, $blue-0);
+$toggle-unchecked-success--background: var(--gama-toggle-unchecked-success--background, $green-0);
+$toggle-unchecked-warn--background: var(--gama-toggle-unchecked-warn--background, $yellow-0);
+$toggle-unchecked-alert--background: var(--gama-toggle-unchecked-alert--background, $red-0);
+$toggle-unchecked-disabled--background: var(--gama-toggle-unchecked-disabled--background, $white-0);
+
+// background checked themes
+$toggle-checked--background: var(--gama-toggle-checked--background, $white-200);
+$toggle-checked-info--background: var(--gama-toggle-checked-info--background, $blue-600);
+$toggle-checked-success--background: var(--gama-toggle-checked-success--background, $green-600);
+$toggle-checked-warn--background: var(--gama-toggle-checked-warn--background, $yellow-600);
+$toggle-checked-alert--background: var(--gama-toggle-checked-alert--background, $red-600);
+$toggle-checked-disabled--background: var(--gama-toggle-checked-disabled--background, $white-600);
+
+// color unchecked themes
+$toggle-unchecked--color: var(--gama-toggle-unchecked--color, $white-500);
+$toggle-unchecked-info--color: var(--gama-toggle-unchecked-info--color, $blue-600);
+$toggle-unchecked-success--color: var(--gama-toggle-unchecked-success--color, $green-600);
+$toggle-unchecked-warn--color: var(--gama-toggle-unchecked-warn--color, $yellow-600);
+$toggle-unchecked-alert--color: var(--gama-toggle-unchecked-alert--color, $red-600);
+$toggle-unchecked-disabled--color: var(--gama-toggle-unchecked-disabled--color, $white-600);
+
+// color checked themes
+$toggle-checked--color: var(--gama-toggle-checked--color, $black-200);
+$toggle-checked-info--color: var(--gama-toggle-checked-info--color, $blue-0);
+$toggle-checked-success--color: var(--gama-toggle-checked-success--color, $green-0);
+$toggle-checked-warn--color: var(--gama-toggle-checked-warn--color, $yellow-0);
+$toggle-checked-alert--color: var(--gama-toggle-checked-alert--color, $red-0);
+$toggle-checked-disabled--color: var(--gama-toggle-checked-disabled--color, $black-0);
+
+
+
+@mixin gama-toggle-themes($bgColor, $border, $color, $checkedBgColor, $checkedBorder, $checkedColor) {
+    .slider {
+        background-color: $bgColor;
+        border: $border;
+
+        &:before {
+            background-color: $color;
+            transition: .4s;
+        }
+
+    }
+
+    input:checked+.slider {
+        background-color: $checkedBgColor;
+        border: $checkedBorder;
+
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px $checkedColor;
+    }
+
+    input:checked+.slider:before {
+        background-color: $checkedColor;
+    }
+}
+
+@mixin gama-toggle-size($height, $width) {
+    .switch {
+        font-size: calc($height * 0.5);
+        width: $width;
+        height: $height;
+    }
+    .slider:before {
+        height: calc($height * 0.75);
+        width: calc($height * 0.75);
+        border-radius: calc($height * 0.8);
+        left: calc($height * 0.1);
+        bottom: calc($height * 0.1);
+    }
+    .slider {
+        border-radius: calc($width * 0.75);
+    }
+}
+
+.gama-toggle {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    color: $black-600;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+        visibility: hidden;
+        display: none;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        transition: .4s;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(1.4em);
+    }
+    .label{
+        cursor: inherit;
+        &.default{
+            cursor: default;
+        }
+    }
+
+
+    &:not(.disabled){
+        .slider{
+            cursor: pointer;
+        }
+        @include gama-toggle-themes($toggle-unchecked--background, $toggle-unchecked--border, $toggle-unchecked--color, $toggle-checked--background, $toggle-checked--border, $toggle-checked--color);
+        &.info{
+            @include gama-toggle-themes($toggle-unchecked-info--background, $toggle-unchecked-info--border, $toggle-unchecked-info--color, $toggle-checked-info--background, $toggle-checked-info--border, $toggle-checked-info--color,)
+        }
+        &.success{
+            @include gama-toggle-themes($toggle-unchecked-success--background, $toggle-unchecked-success--border, $toggle-unchecked-success--color, $toggle-checked-success--background, $toggle-checked-success--border, $toggle-checked-success--color,)
+        }
+        &.warn{
+            @include gama-toggle-themes($toggle-unchecked-warn--background, $toggle-unchecked-warn--border, $toggle-unchecked-warn--color, $toggle-checked-warn--background, $toggle-checked-warn--border, $toggle-checked-warn--color,)
+        }
+        &.alert{
+            @include gama-toggle-themes($toggle-unchecked-alert--background, $toggle-unchecked-alert--border, $toggle-unchecked-alert--color, $toggle-checked-alert--background, $toggle-checked-alert--border, $toggle-checked-alert--color,)
+        }
+    }
+    &.disabled{
+        cursor: default;
+        .slider{
+            cursor: default;
+        }
+        .label{
+            color: $black-300;
+        }
+        @include gama-toggle-themes($toggle-unchecked-disabled--background, $toggle-unchecked-disabled--border, $toggle-unchecked-disabled--color, $toggle-checked-disabled--background, $toggle-checked-disabled--border, $toggle-checked-disabled--color)
+    }
+
+    &.small{
+        @include gama-toggle-size($toggle-small--height, $toggle-small--width);
+    }
+    &.medium{
+        @include gama-toggle-size($toggle-medium--height, $toggle-medium--width);
+    }
+    &.large{
+        @include gama-toggle-size($toggle-large--height, $toggle-large--width);
+    }
+}
