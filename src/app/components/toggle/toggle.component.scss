@@ -5,13 +5,13 @@ $toggle--font-size: var(--gama-toggle--font-size, 0.875rem);
 $toggle--font-size-scale: var(--gama-toggle--font-size-scale, 0.25rem);
 $toggle--line-height: var(--gama-toggle--line-height, 1.25rem);
 
-$toggle-small--height: var(--gama-toggle-small--height, 1.5rem);
-$toggle-medium--height: var(--gama-toggle-medium--height, 2.25rem);
-$toggle-large--height: var(--gama-toggle-large--height, 2.5rem);
+$toggle-small--height: var(--gama-toggle-small--height, 1.6rem);
+$toggle-medium--height: var(--gama-toggle-medium--height, 1.85rem);
+$toggle-large--height: var(--gama-toggle-large--height, 2.25rem);
 
-$toggle-small--width: var(--gama-toggle-small--width, 2.5rem);
-$toggle-medium--width: var(--gama-toggle-medium--width, 3.75rem);
-$toggle-large--width: var(--gama-toggle-large--width, 4.25rem);
+$toggle-small--width: var(--gama-toggle-small--width, 2.6rem);
+$toggle-medium--width: var(--gama-toggle-medium--width, 3rem);
+$toggle-large--width: var(--gama-toggle-large--width, 3.75rem);
 
 
 $toggle--border-primary-radius: var(--gama-toggle-primary--border-radius, 0.5rem);
@@ -100,11 +100,11 @@ $toggle-checked-disabled--color: var(--gama-toggle-checked-disabled--color, $bla
         height: $height;
     }
     .slider:before {
-        height: calc($height * 0.75);
-        width: calc($height * 0.75);
+        height: calc($height * 0.80);
+        width: calc($height * 0.80);
         border-radius: calc($height * 0.8);
         left: calc($height * 0.1);
-        bottom: calc($height * 0.1);
+        bottom: calc($height * 0.08);
     }
     .slider {
         border-radius: calc($width * 0.75);
@@ -159,7 +159,7 @@ $toggle-checked-disabled--color: var(--gama-toggle-checked-disabled--color, $bla
     }
 
     input:checked+.slider:before {
-        transform: translateX(1.4em);
+        transform: translateX(1.2em);
     }
     .label{
         cursor: inherit;
