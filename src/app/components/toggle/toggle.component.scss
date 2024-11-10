@@ -117,6 +117,7 @@ $toggle-checked-disabled--color: var(--gama-toggle-checked-disabled--color, $bla
     column-gap: 0.25rem;
     color: $black-600;
     cursor: pointer;
+    height: 100%;
 
     input[type="checkbox"] {
         visibility: hidden;
