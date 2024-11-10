@@ -1,0 +1,22 @@
+<div class="gama-checkbox {{theme}} {{size}}" [ngClass]="{'disabled': disabled || (formControl && formControl.disabled)}">
+    @if (formControl){
+        <input class="inp-cbx" #checkbox type="checkbox" (change)="_change($event)" [formControl]="formControl">
+    } @else{
+        <input class="inp-cbx" #checkbox type="checkbox" (change)="_change($event)" [checked]="checked" [disabled]="disabled">
+    }
+    <label class="cbx" (click)="_toggleCheckbox()">
+        @if(labelPosition === 'before' && label){
+            <span class="label">{{label}}</span>
+        }
+      <span class="checkmark {{border}}-border">
+        <svg width="12px" height="9px" viewbox="0 0 12 9">
+          <polyline points="1 5 4 8 11 1"></polyline>
+        </svg>
+      </span>
+      @if(labelPosition === 'after' && label){
+        <span class="label">{{label}}</span>
+        }
+    </label>
+</div>
+
+  

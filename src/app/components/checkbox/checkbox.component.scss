@@ -1,0 +1,235 @@
+@import '@styles/variables.scss';
+
+$checkbox-small--size: var(--gama-checkbox-small--size, 1.25rem);
+$checkbox-medium--size: var(--gama-checkbox-medium--size, 1.5rem);
+$checkbox-large--size: var(--gama-checkbox-large--size, 1.875rem);
+
+$checkbox-small--font-size: var(--gama-checkbox-small--font-size, 0.875rem);
+$checkbox-medium--font-size: var(--gama-checkbox-medium--font-size, 1rem);
+$checkbox-large--font-size: var(--gama-checkbox-large--font-size, 1.25rem);
+
+$checkbox-small-checkmark--top: var(--gama-checkbox-small-checkmark--top, 5px);
+$checkbox-medium-checkmark--top: var(--gama-checkbox-medium-checkmark--top, 7px);
+$checkbox-large-checkmark--top: var(--gama-checkbox-large-checkmark--top, 10px);
+
+$checkbox-small-checkmark--left: var(--gama-checkbox-small-checkmark--left, 3px);
+$checkbox-medium-checkmark--left: var(--gama-checkbox-medium-checkmark--left, 5px);
+$checkbox-large-checkmark--left: var(--gama-checkbox-large--left, 8px);
+
+
+$checkbox--border-primary-radius: var(--gama-checkbox-primary--border-radius, 0.25rem);
+$checkbox--border-secondary-radius: var(--gama-checkbox-secondary--border-radius, 999rem);
+
+// border unchecked themes
+$checkbox-unchecked--border: var(--gama-checkbox-unchecked--border, 1px solid $white-500);
+$checkbox-unchecked-info--border: var(--gama-checkbox-unchecked-info--border, 1px solid $blue-600);
+$checkbox-unchecked-success--border: var(--gama-checkbox-unchecked-success--border, 1px solid $green-600);
+$checkbox-unchecked-warn--border: var(--gama-checkbox-unchecked-warn--border, 1px solid $yellow-600);
+$checkbox-unchecked-alert--border: var(--gama-checkbox-unchecked-alert--border, 1px solid $red-600);
+$checkbox-unchecked-disabled--border: var(--gama-checkbox-unchecked-disabled--border, 1px solid $white-600);
+
+// border checked themes
+$checkbox-checked--border: var(--gama-checkbox-checked--border, 1px solid $black-200);
+$checkbox-checked-info--border: var(--gama-checkbox-checked-info--border, 1px solid $blue-700);
+$checkbox-checked-success--border: var(--gama-checkbox-checked-success--border, 1px solid $green-700);
+$checkbox-checked-warn--border: var(--gama-checkbox-checked-warn--border, 1px solid $yellow-700);
+$checkbox-checked-alert--border: var(--gama-checkbox-checked-alert--border, 1px solid $red-700);
+$checkbox-checked-disabled--border: var(--gama-checkbox-checked-disabled--border, 1px solid $white-700);
+
+// background unchecked themes
+$checkbox-unchecked--background: var(--gama-checkbox-unchecked--background, $white-0);
+$checkbox-unchecked-info--background: var(--gama-checkbox-unchecked-info--background, $blue-0);
+$checkbox-unchecked-success--background: var(--gama-checkbox-unchecked-success--background, $green-0);
+$checkbox-unchecked-warn--background: var(--gama-checkbox-unchecked-warn--background, $yellow-0);
+$checkbox-unchecked-alert--background: var(--gama-checkbox-unchecked-alert--background, $red-0);
+$checkbox-unchecked-disabled--background: var(--gama-checkbox-unchecked-disabled--background, $white-0);
+
+// background checked themes
+$checkbox-checked--background: var(--gama-checkbox-checked--background, $black-200);
+$checkbox-checked-info--background: var(--gama-checkbox-checked-info--background, $blue-600);
+$checkbox-checked-success--background: var(--gama-checkbox-checked-success--background, $green-600);
+$checkbox-checked-warn--background: var(--gama-checkbox-checked-warn--background, $yellow-600);
+$checkbox-checked-alert--background: var(--gama-checkbox-checked-alert--background, $red-600);
+$checkbox-checked-disabled--background: var(--gama-checkbox-checked-disabled--background, $white-600);
+
+@mixin gama-checkbox-themes($bgColor, $border, $checkedBgColor, $checkedBorder) {
+    .cbx {
+        .checkmark {
+            background: $bgColor;
+            border: $border;
+
+            svg {
+                stroke: $bgColor;
+            }
+
+            &:before {
+                background: $checkedBgColor;
+            }
+        }
+
+        &:hover .checkmark {
+            border: $checkedBorder;
+        }
+    }
+
+    .inp-cbx:checked+.cbx {
+        .checkmark {
+            border: $checkedBorder;
+            background: $checkedBgColor;
+        }
+    }
+}
+
+@mixin gama-checkbox-size($size, $font-size, $top, $left) {
+    .label {
+        font-size: $font-size;
+    }
+
+    .checkmark {
+        width: $size;
+        height: $size;
+
+        svg {
+            top: $top;
+            left: $left;
+        }
+    }
+}
+
+.gama-checkbox {
+    @keyframes check-15 {
+        50% {
+            transform: scale(1.2);
+        }
+    }
+    color: $black-600;
+    .cbx {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        column-gap: 0.375rem;
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            transform: translate3d(0, 0, 0);
+        }
+        .checkmark {
+            box-sizing: border-box;
+            position: relative;
+            transform: scale(1);
+            vertical-align: middle;
+            transition: all 0.2s ease;
+            &.primary-border{
+                border-radius: $checkbox--border-primary-radius;
+            }
+    
+            &.secondary-border{
+                border-radius: $checkbox--border-secondary-radius;
+            }
+            svg {
+                position: absolute;
+                z-index: 1;
+                fill: none;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: all 0.3s ease;
+                transition-delay: 0.1s;
+                stroke-width: 2;
+                stroke-dasharray: 16px;
+                stroke-dashoffset: 16px;
+            }
+
+            &:before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                display: block;
+                border-radius: 50%;
+                transform: scale(0);
+                opacity: 1;
+                transition-delay: 0.2s;
+            }
+        }
+    }
+    .inp-cbx {
+        visibility: hidden;
+        display: none;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .inp-cbx:checked +.cbx {
+        .checkmark {
+            animation: check-15 0.6s ease;
+
+            svg {
+                stroke-dashoffset: 0;
+            }
+
+            &:before {
+                transform: scale(2.25);
+                opacity: 0;
+                transition: all 0.6s ease;
+            }
+        }
+    }
+
+    &:not(.disabled) {
+        &:not(.info):not(.success):not(.warn):not(.alert) {
+            @include gama-checkbox-themes($checkbox-unchecked--background, $checkbox-unchecked--border, $checkbox-checked--background, $checkbox-checked--border);
+        }
+
+        &.info {
+            @include gama-checkbox-themes($checkbox-unchecked-info--background, $checkbox-unchecked-info--border, $checkbox-checked-info--background, $checkbox-checked-info--border)
+        }
+
+        &.success {
+            @include gama-checkbox-themes($checkbox-unchecked-success--background, $checkbox-unchecked-success--border, $checkbox-checked-success--background, $checkbox-checked-success--border)
+        }
+
+        &.warn {
+            @include gama-checkbox-themes($checkbox-unchecked-warn--background, $checkbox-unchecked-warn--border, $checkbox-checked-warn--background, $checkbox-checked-warn--border)
+        }
+
+        &.alert {
+            @include gama-checkbox-themes($checkbox-unchecked-alert--background, $checkbox-unchecked-alert--border, $checkbox-checked-alert--background, $checkbox-checked-alert--border)
+        }
+    }
+
+    &.disabled {
+        .cbx{
+            cursor: default;
+        }
+        .label {
+            color: $black-300;
+        }
+
+        @include gama-checkbox-themes($checkbox-unchecked-disabled--background, $checkbox-unchecked-disabled--border, $checkbox-checked-disabled--background, $checkbox-checked-disabled--border)
+    }
+
+    &.small {
+        .checkmark svg{
+            transform: translate3d(0, 0, 0);
+        }
+        @include gama-checkbox-size($checkbox-small--size, $checkbox-small--font-size, $checkbox-small-checkmark--top, $checkbox-small-checkmark--left);
+    }
+
+    &.medium {
+        .checkmark svg{
+            transform: translate3d(0, 0, 0) scale(1.25);
+        }
+        @include gama-checkbox-size($checkbox-medium--size, $checkbox-medium--font-size, $checkbox-medium-checkmark--top, $checkbox-medium-checkmark--left);
+    }
+
+    &.large {
+        .checkmark svg{
+            transform: translate3d(0, 0, 0) scale(1.5);
+        }
+        @include gama-checkbox-size($checkbox-large--size, $checkbox-large--font-size, $checkbox-large-checkmark--top, $checkbox-large-checkmark--left);
+    }
+}
