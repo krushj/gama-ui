@@ -7,11 +7,11 @@
     "baseUrl": "./src",
     "paths": {
       "@styles/*": ["styles/*"],
-      "@gama/components": ["app/components"],
-      "@gama/interface": ["app/interface"],
-      "@gama/pipe": ["app/pipe"],
-      "@gama/view": ["app/view"],
-      "@gama/services": ["app/services"]
+      "@gama-ui/components": ["app/components"],
+      "@gama-ui/interface": ["app/interface"],
+      "@gama-ui/pipe": ["app/pipe"],
+      "@gama-ui/view": ["app/view"],
+      "@gama-ui/services": ["app/services"]
 
     },
     "noImplicitOverride": true,

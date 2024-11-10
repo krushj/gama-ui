@@ -173,12 +173,14 @@ $input-disabled--color: var(--gama-input-disabled--color, $black-200);
 
     
     &:not(.disabled){
-        @include input-themes($input--background, $input--border, $input--border-primary-radius, $input--color); 
-        &:hover{
-            @include input-themes($input-hover--background, $input-hover--border, $input--border-primary-radius, $input-hover--color); 
-        }
-        &.focused{
-            @include input-themes($input-focus--background, $input-focus--border, $input--border-primary-radius, $input-focus--color); 
+        &:not(.info):not(.success):not(.warn):not(.alert){
+            @include input-themes($input--background, $input--border, $input--border-primary-radius, $input--color); 
+            &:hover{
+                @include input-themes($input-hover--background, $input-hover--border, $input--border-primary-radius, $input-hover--color); 
+            }
+            &.focused{
+                @include input-themes($input-focus--background, $input-focus--border, $input--border-primary-radius, $input-focus--color); 
+            }
         }
         &.info{
             @include input-themes($input-info--background, $input-info--border, $input--border-primary-radius, $input-info--color); 
