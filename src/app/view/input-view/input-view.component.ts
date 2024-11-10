@@ -1,9 +1,9 @@
 
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent, IconComponent, InputComponent } from '@gama/components';
-import { KeyValue, Snippet } from '@gama/interface';
-import { CopySnippetService } from '@gama/services';
+import { ButtonComponent, IconComponent, InputComponent } from '@gama-ui/components';
+import { KeyValue, Snippet } from '@gama-ui/interface';
+import { CopySnippetService } from '@gama-ui/services';
 
 @Component({
   selector: 'input-view',
@@ -14,6 +14,7 @@ import { CopySnippetService } from '@gama/services';
 export class InputViewComponent {
   themes: any[] = ['', 'info', 'success', 'warn', 'alert', 'disabled'];
   borders: any[] = ['primary', 'secondary'];
+  appearances: any[] = ['outline', 'fill'];
   labels : boolean[] = [false, true];
 
   constructor(private cdr: ChangeDetectorRef, private copySnippetService: CopySnippetService) {
@@ -34,7 +35,7 @@ export class InputViewComponent {
   }
 
   _generateOnTheFlySnippet (label: boolean, theme: string) :string {
-    let tag = `<GInput${label ? ` label="Label" `: ''} placeholder="placeholder" border=":border"${(theme !== '' && theme !== 'disabled') ? ` theme=":theme"`: ''}${theme === 'disabled' ? ` [disabled]=[true]`: ''}><GButton [style]="{background : 'transparent'; border: 'none'}" iconButton size="small" iconName="search" ${label ? 'suffix': 'prefix'}/><span ${label ? 'error': 'hint'}>${label ? 'error': 'hint'}</span></GInput>`
+    let tag = `<GInput${label ? ` label="Label" `: ''} appearance=":appearance" placeholder="placeholder" border=":border"${(theme !== '' && theme !== 'disabled') ? ` theme=":theme"`: ''}${theme === 'disabled' ? ` [disabled]=[true]`: ''}><GButton [style]="{background : 'transparent'; border: 'none'}" iconButton size="small" iconName="search" ${label ? 'suffix': 'prefix'}/><span ${label ? 'error': 'hint'}>${label ? 'error': 'hint'}</span></GInput>`
     return tag;
   }
 }

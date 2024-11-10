@@ -1,31 +1,33 @@
 
 <div class="flex flex-col gap-x-36">
-    @for(label of labels; track $index){
-        @for(border of borders; track $index; let e = $even){
-          <div [attr.data-aos]="e ? 'fade-up-right' : 'fade-up-left'" class="grid grid-col-3 gap-16">
-            @for(theme of themes; track $index){
-              <div class="h-100 flex bg-white-200 rounded-md p-16 flex-col gap-x-8">
-                <div class="flex-row-reverse flex">
-                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
-                        (click)="copySnippet($event, {border, label, theme})">
-                    </GIcon>
-                </div>
-                <div class="flex flex-row items-center justify-center flex-1">
-                  @if(label){
-                    <GInput label="Label" [border]="border" [theme]="theme" placeholder="placeholder" [disabled]="theme==='disabled'">
-                      <GButton [style]="{background : 'transparent', border: 'none'}" iconButton size="small" iconName="search" suffix/>
-                      <span error>error</span>
-                    </GInput>
-                  } @else{
-                    <GInput [border]="border" [theme]="theme" placeholder="placeholder" [disabled]="theme==='disabled'">
-                      <GButton [style]="{background : 'transparent', border: 'none'}" iconButton size="small" iconName="search" prefix/>
-                      <span hint>hint</span>
-                    </GInput>
-                  }
-                </div>
+    @for (appearance of appearances; track appearance){
+      @for(label of labels; track $index){
+          @for(border of borders; track $index; let e = $even){
+            <div [attr.data-aos]="e ? 'fade-up-right' : 'fade-up-left'" class="grid grid-col-3 gap-16">
+              @for(theme of themes; track $index){
+                <div class="h-100 flex bg-white-200 rounded-md p-16 flex-col gap-x-8">
+                  <div class="flex-row-reverse flex">
+                      <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                          (click)="copySnippet($event, {border, label, theme, appearance})">
+                      </GIcon>
+                  </div>
+                  <div class="flex flex-row items-center justify-center flex-1">
+                    @if(label){
+                      <GInput label="Label" [border]="border" [appearance]="appearance" [theme]="theme" placeholder="placeholder" [disabled]="theme==='disabled'">
+                        <GButton [style]="{background : 'transparent', border: 'none'}" iconButton size="small" iconName="search" suffix/>
+                        <span error>error</span>
+                      </GInput>
+                    } @else{
+                      <GInput [border]="border" [appearance]="appearance" [theme]="theme" placeholder="placeholder" [disabled]="theme==='disabled'">
+                        <GButton [style]="{background : 'transparent', border: 'none'}" iconButton size="small" iconName="search" prefix/>
+                        <span hint>hint</span>
+                      </GInput>
+                    }
+                  </div>
+              </div>
+              }
             </div>
-            }
-          </div>
-        }
+          }
+      }
     }
 </div>
