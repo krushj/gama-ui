@@ -1,28 +1,30 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ButtonComponent, IconComponent } from '@gama/components';
-import { Snippet } from '@gama/interface';
-import { CopySnippetService } from '@gama/services';
+import { ButtonComponent, IconComponent, ToggleComponent } from '@gama-ui/components';
+import { KeyValue, Snippet } from '@gama-ui/interface';
+import { CopySnippetService } from '@gama-ui/services';
 
 @Component({
   selector: 'button-view',
   standalone: true,
-  imports: [ButtonComponent, IconComponent],
+  imports: [ButtonComponent, IconComponent,ToggleComponent],
   templateUrl: './button-view.component.html',
 })
 export class ButtonViewComponent {
-  themes: any[] = ['info', 'success', 'warn', 'alert'];
+  themes: any[] = [null, 'info', 'success', 'warn', 'alert', 'disabled'];
   types: any[] = ['primary', 'secondary', 'tertiary'];
   sizes: any[] = ['small', 'medium', 'large'];
   disableStatus : boolean[] = [false, true];
+  isPrimaryBorderType : boolean = false;
 
 
   constructor(private cdr: ChangeDetectorRef, private copySnippetService: CopySnippetService) {
   }
 
-  copySnippet(event: Event, snippet: Snippet) {
+  copySnippet(event: Event, params: KeyValue) {
     const target = event.target as HTMLElement;
     if (target.innerText !== 'check_circle') {
-      this.copySnippetService.copyContent(this.defaultSnippetTemplate[snippet.key], snippet.params);
+      const tagSnippet = this._generateOnTheFlySnippet(params['size'] as string, params['theme'] as string, params['type'] as string, params['icon'] as boolean);
+      this.copySnippetService.copyContent(tagSnippet, params);
       target.innerText = 'check_circle';
       target.style.color = '#00A699';
       setTimeout(() => {
@@ -32,11 +34,9 @@ export class ButtonViewComponent {
       this.cdr.detectChanges();
     }
   }
-
-  defaultSnippetTemplate: { [key: string]: string } = {
-    defaultButton: `<GButton title="Click Me" [size]=":size" [disabled]=":disabled"/>`,
-    defaultIconButton: `<GButton iconName="search" [iconButton]="true" [size]=":size" [disabled]=":disabled" />`,
-    themeButton: `<GButton title="Click Me" [size]=":size" [theme]=":theme" [type]=":type" />`,
-    themeIconButton: `<GButton iconName="search" [iconButton]="true" [size]=":size" [theme]=":theme" [type]=":type" />`,
+  _generateOnTheFlySnippet (size: string, theme: string, type: string, icon: boolean) :string {
+    let tag = `<GButton size=":size" type=":type" border="${this.isPrimaryBorderType?'primary':'secondary'}"${theme !=='disabled' && theme !== null ? ` theme=":theme"`: ''}${icon ? ' [iconButton]="true"':''}${theme==='disabled' ? ` [disabled]="true"`: ''}/>`
+    return tag;
   }
+  
 }
