@@ -1,0 +1,36 @@
+
+<div class="inline-flex mb-8 sticky top-8 bg-white-0 px-16 py-8 rounded-md" style="z-index: 1;">
+    <GToggle size="medium" theme="info" [checked]="isPrimaryBorderType" afterLabel="Square" beforeLabel="Rounded" (onChange)="isPrimaryBorderType = !isPrimaryBorderType"/>
+</div>
+<div class="flex flex-col gap-x-36">
+    @for (size of sizes; track $index; let e = $even){
+        <div [attr.data-aos]="e ? 'fade-up-right' : 'fade-up-left'" class="grid grid-col-3 gap-16">
+            @for(theme of themes; track theme; let idx = $index){
+              <div class="h-100 flex bg-white-200 rounded-md p-16 flex-col gap-x-8">
+                <div class="flex-row-reverse flex">
+                    <GIcon name="content_copy" [style]="{fontSize: '14px', cursor: 'pointer'}"
+                        (click)="copySnippet($event, {size, theme, idx})">
+                    </GIcon>
+                </div>
+                <div class="flex flex-row items-center justify-center flex-1">
+                  @if(size === 'small'){
+                    @if(idx < 3){
+                        <GCheckbox [border]="isPrimaryBorderType ? 'primary': 'secondary'" label="before" labelPosition="before" [theme]="theme" size="small" [disabled]="theme==='disabled'"/>
+                    } 
+                    @else{
+                        <GCheckbox [border]="isPrimaryBorderType ? 'primary': 'secondary'" label="after" labelPosition="after" [theme]="theme" size="small" [disabled]="theme==='disabled'" [checked]="theme==='disabled'"/>
+                    }
+                  }
+                  @else{
+                    <GCheckbox [border]="isPrimaryBorderType ? 'primary': 'secondary'" border="secondary" [theme]="theme" [size]="size" [disabled]="theme==='disabled'"/>
+                  }
+            
+                </div>
+            </div>
+            }
+          </div>
+    }
+</div>
+
+
+
