@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { Icon, Style } from '@gama/interface';
+import { Icon, Style } from '@gama-ui/interface';
 
 type GamaButtonType = 'primary' | 'secondary' | 'tertiary';
 type GamaButtonSize = 'small' | 'medium' | 'large';

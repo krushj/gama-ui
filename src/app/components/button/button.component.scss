@@ -24,6 +24,21 @@ $largeButtonIconSize : var(--gama-button-large--icon-size, 1.375rem); // 22px ic
 $largeButtonColumnGap : var(--gama-button-large--column-gap, 0.375rem); // 6px gap between icon and text
 $largeButtonFontSize : var(--gama-button-large--font-size, 0.875rem); // 16px font size
 
+// icon button themes
+$background-color: var(--gama-button--background-color, $white-0);
+$color: var(--gama-button--color, $black-300);
+
+$hover-background-color: var(--gama-button-hover--background-color, $white-100);
+$hover-color: var(--gama-button-hover--color, $black-400);
+$hover-box-shadow: var(--gama-button-hover--box-shadow, 0px 0.125rem 0.125rem 0px $white-700);
+$tertiary-hover-background-color: var(--gama-button-tertiary-hover--background-color, $white-200);
+$tertiary-hover-box-shadow: var(--gama-button-tertiary-hover--box-shadow, 0px 0.125rem 0.125rem 0px $white-700);
+
+$active-background-color: var(--gama-button-active--background-color, $white-200);
+$active-color: var(--gama-button-active--color, $black-500);
+$active-box-shadow: var(--gama-button-hover--box-shadow, 0px 0.125rem 0.125rem 0px $white-800);
+$tertiary-active-background-color: var(--gama-button-tertiary-active--background-color, $white-300);
+$tertiary-active-box-shadow: var(--gama-button-tertiary-active--box-shadow, 0px 0.125rem 0.125rem 0px $white-800);
 
 // info icon button themes
 $info-background-color: var(--gama-button-theme-info--background-color, $blue-600);
@@ -171,128 +186,161 @@ $disabled-icon-button-color: var(--gama-button-theme-disabled--color, $white-0);
     }
 
     &.primary{
-        &.info{
-            @include gama-icon-button-theme-mixin($info-background-color, none, $info-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($info-hover-background-color, none, $info-hover-color, $info-hover-box-shadow);
+        &:not(:disabled){
+            &:not(.info):not(.success):not(.warn):not(.alert) {
+                @include gama-icon-button-theme-mixin($background-color, none, $color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($hover-background-color, none, $hover-color, $hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($active-background-color, none, $active-color, $active-box-shadow);
+                }
             }
-            &:active{
-                @include gama-icon-button-theme-mixin($info-active-background-color, none, $info-active-color, $info-active-box-shadow);
+            &.info{
+                @include gama-icon-button-theme-mixin($info-background-color, none, $info-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($info-hover-background-color, none, $info-hover-color, $info-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($info-active-background-color, none, $info-active-color, $info-active-box-shadow);
+                }
+            }
+            &.success{
+                @include gama-icon-button-theme-mixin($success-background-color, none, $success-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($success-hover-background-color, none, $success-hover-color, $success-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($success-active-background-color, none, $success-active-color, $success-active-box-shadow);
+                }
+            }
+            &.warn{
+                @include gama-icon-button-theme-mixin($warn-background-color, none, $warn-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($warn-hover-background-color, none, $warn-hover-color, $warn-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($warn-active-background-color, none, $warn-active-color, $warn-active-box-shadow);
+                }
+            }
+            &.alert{
+                @include gama-icon-button-theme-mixin($alert-background-color, none, $alert-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($alert-hover-background-color, none, $alert-hover-color, $alert-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($alert-active-background-color, none, $alert-active-color, $alert-active-box-shadow);
+                }
             }
         }
-        &.success{
-            @include gama-icon-button-theme-mixin($success-background-color, none, $success-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($success-hover-background-color, none, $success-hover-color, $success-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($success-active-background-color, none, $success-active-color, $success-active-box-shadow);
-            }
-        }
-        &.warn{
-            @include gama-icon-button-theme-mixin($warn-background-color, none, $warn-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($warn-hover-background-color, none, $warn-hover-color, $warn-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($warn-active-background-color, none, $warn-active-color, $warn-active-box-shadow);
-            }
-        }
-        &.alert{
-            @include gama-icon-button-theme-mixin($alert-background-color, none, $alert-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($alert-hover-background-color, none, $alert-hover-color, $alert-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($alert-active-background-color, none, $alert-active-color, $alert-active-box-shadow);
-            }
-        }
-        &:disabled, &:disabled:hover, &:disabled:active{
+        &:disabled{
             @include gama-icon-button-theme-mixin($disabled-icon-button-background-color, none, $disabled-icon-button-color, none);
         }
     }
 
     &.secondary{
-        &.info{
-            @include gama-icon-button-theme-mixin($white-0, 1px solid $info-background-color, $info-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $info-hover-background-color, $info-hover-background-color, $info-hover-box-shadow);
+        &:not(:disabled){
+            &:not(.info):not(.success):not(.warn):not(.alert) {
+                @include gama-icon-button-theme-mixin($background-color, 1px solid $color, $color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($hover-background-color, 1px solid $hover-color, $hover-color, $hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($active-background-color, 1px solid $active-color, $active-color, $active-box-shadow);
+                }
             }
-            &:active{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $info-active-background-color, $info-active-background-color, $info-active-box-shadow);
+            &.info{
+                @include gama-icon-button-theme-mixin($white-0, 1px solid $info-background-color, $info-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $info-hover-background-color, $info-hover-background-color, $info-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $info-active-background-color, $info-active-background-color, $info-active-box-shadow);
+                }
+            }
+            &.success{
+                @include gama-icon-button-theme-mixin($white-0, 1px solid $success-background-color, $success-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $success-hover-background-color, $success-hover-background-color, $success-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $success-active-background-color, $success-active-background-color, $success-active-box-shadow);
+                }
+            }
+            &.warn{
+                @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-background-color, $warn-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-hover-background-color, $warn-hover-background-color, $warn-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-active-background-color, $warn-active-background-color, $warn-active-box-shadow);
+                }
+            }
+            &.alert{
+                @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-background-color, $alert-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-hover-background-color, $alert-hover-background-color, $alert-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-active-background-color, $alert-active-background-color, $alert-active-box-shadow);
+                }
             }
         }
-        &.success{
-            @include gama-icon-button-theme-mixin($white-0, 1px solid $success-background-color, $success-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $success-hover-background-color, $success-hover-background-color, $success-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $success-active-background-color, $success-active-background-color, $success-active-box-shadow);
-            }
-        }
-        &.warn{
-            @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-background-color, $warn-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-hover-background-color, $warn-hover-background-color, $warn-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $warn-active-background-color, $warn-active-background-color, $warn-active-box-shadow);
-            }
-        }
-        &.alert{
-            @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-background-color, $alert-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-hover-background-color, $alert-hover-background-color, $alert-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($white-0, 1px solid $alert-active-background-color, $alert-active-background-color, $alert-active-box-shadow);
-            }
-        }
-        &:disabled, &:disabled:hover, &:disabled:active{
+        &:disabled{
             @include gama-icon-button-theme-mixin($white-0, 1px solid $disabled-icon-button-background-color, $disabled-icon-button-background-color, none);
         }
         
     }
 
     &.tertiary{
-        &.info{
-            @include gama-icon-button-theme-mixin(transparent, none, $info-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($tertiary-info-hover-background-color, none, $info-background-color, $tertiary-info-hover-box-shadow);
+        &:not(:disabled){
+            &:not(.info):not(.success):not(.warn):not(.alert) {
+                @include gama-icon-button-theme-mixin(transparent, none, $color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($tertiary-hover-background-color, none, $hover-color, $tertiary-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($tertiary-active-background-color, none, $active-color, $tertiary-active-box-shadow);
+                }
             }
-            &:active{
-                @include gama-icon-button-theme-mixin($tertiary-info-hover-background-color, none, $info-active-background-color, $tertiary-info-active-box-shadow);
+            &.info{
+                @include gama-icon-button-theme-mixin(transparent, none, $info-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($tertiary-info-hover-background-color, none, $info-background-color, $tertiary-info-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($tertiary-info-hover-background-color, none, $info-active-background-color, $tertiary-info-active-box-shadow);
+                }
+            }
+            &.success{
+                @include gama-icon-button-theme-mixin(transparent, none, $success-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($tertiary-success-hover-background-color, none, $success-background-color, $tertiary-success-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($tertiary-success-hover-background-color, none, $success-active-background-color, $tertiary-success-active-box-shadow);
+                }
+            }
+            &.warn{
+                @include gama-icon-button-theme-mixin(transparent, none, $warn-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($tertiary-warn-hover-background-color, none, $warn-background-color, $tertiary-warn-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($tertiary-warn-hover-background-color, none, $warn-active-background-color, $tertiary-warn-active-box-shadow);
+                }
+            }
+            &.alert{
+                @include gama-icon-button-theme-mixin(transparent, none, $alert-background-color, none);
+                &:hover{
+                    @include gama-icon-button-theme-mixin($tertiary-alert-hover-background-color, none, $alert-background-color, $tertiary-alert-hover-box-shadow);
+                }
+                &:active{
+                    @include gama-icon-button-theme-mixin($tertiary-alert-hover-background-color, none, $alert-active-background-color, $tertiary-alert-active-box-shadow);
+                }
             }
         }
-        &.success{
-            @include gama-icon-button-theme-mixin(transparent, none, $success-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($tertiary-success-hover-background-color, none, $success-background-color, $tertiary-success-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($tertiary-success-hover-background-color, none, $success-active-background-color, $tertiary-success-active-box-shadow);
-            }
-        }
-        &.warn{
-            @include gama-icon-button-theme-mixin(transparent, none, $warn-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($tertiary-warn-hover-background-color, none, $warn-background-color, $tertiary-warn-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($tertiary-warn-hover-background-color, none, $warn-active-background-color, $tertiary-warn-active-box-shadow);
-            }
-        }
-        &.alert{
-            @include gama-icon-button-theme-mixin(transparent, none, $alert-background-color, none);
-            &:hover{
-                @include gama-icon-button-theme-mixin($tertiary-alert-hover-background-color, none, $alert-background-color, $tertiary-alert-hover-box-shadow);
-            }
-            &:active{
-                @include gama-icon-button-theme-mixin($tertiary-alert-hover-background-color, none, $alert-active-background-color, $tertiary-alert-active-box-shadow);
-            }
-        }
-        &:disabled, &:disabled:hover, &:disabled:active{
+        &:disabled{
             @include gama-icon-button-theme-mixin(transparent, none, $disabled-icon-button-background-color, none);
         }
         
