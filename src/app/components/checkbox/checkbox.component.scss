@@ -1,4 +1,4 @@
-@import '@styles/variables.scss';
+@use '../../../variables.scss' as *;
 
 $checkbox-small--size: var(--gama-checkbox-small--size, 1.25rem);
 $checkbox-medium--size: var(--gama-checkbox-medium--size, 1.5rem);
@@ -96,12 +96,13 @@ $checkbox-checked-disabled--background: var(--gama-checkbox-checked-disabled--ba
     }
 }
 
-.gama-checkbox {
-    @keyframes check-15 {
-        50% {
-            transform: scale(1.2);
-        }
+@keyframes check-15 {
+    50% {
+        transform: scale(1.2);
     }
+}
+
+.gama-checkbox {
     color: $black-600;
     .cbx {
         -webkit-user-select: none;

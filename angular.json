@@ -30,12 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/cdk/overlay-prebuilt.css",
-              "src/styles.scss",
-              "node_modules/aos/dist/aos.css"
+              "@angular/cdk/overlay-prebuilt.css"
             ],
             "scripts": [
-              "./node_modules/aos/dist/aos.js"
             ]
           },
           "configurations": {

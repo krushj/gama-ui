@@ -1,4 +1,4 @@
-@import '@styles/variables.scss';
+@use '../../../variables.scss' as *;
 
 $input--height: var(--gama-input--height, 2.5rem);
 $input--font-size: var(--gama-input--font-size, 0.875rem);

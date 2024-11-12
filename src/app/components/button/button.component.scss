@@ -1,4 +1,4 @@
-@import '@styles/variables.scss';
+@use '../../../variables.scss' as *;
 
 $button--border-primary-radius: var(--gama-button-primary--border-radius, 0.5rem);
 $button--border-secondary-radius: var(--gama-button-secondary--border-radius, 999rem);

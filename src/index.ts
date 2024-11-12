@@ -1,1 +1,1 @@
-export * from '@gama-ui/components';
+export * from './app/components'

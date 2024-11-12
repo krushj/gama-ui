@@ -1,0 +1,26 @@
+{
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+        "entryFile": "./src/index.ts"
+    },
+    
+    "allowedNonPeerDependencies": [
+        "@angular/common",
+        "@angular/cdk",
+        "@angular/core",
+        "@angular/forms",
+        "@angular/compiler",
+        "@angular/platform-browser",
+        "@angular/router",
+        "@angular/service-worker",
+        "@angular/animations",
+        "cordova-plugin-inappbrowser",
+        "core-js",
+        "rxjs",
+        "sw-toolbox",
+        "wait-on",
+        "webdriver-manager",
+        "zone.js",
+        "ng-packagr"
+    ]
+}

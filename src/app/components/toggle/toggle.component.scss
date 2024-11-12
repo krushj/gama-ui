@@ -1,4 +1,4 @@
-@import '@styles/variables.scss';
+@use '../../../variables.scss' as *;
 
 $toggle--height: var(--gama-toggle--height, 2.5rem);
 $toggle--font-size: var(--gama-toggle--font-size, 0.875rem);

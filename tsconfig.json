@@ -6,12 +6,6 @@
     "strict": true,
     "baseUrl": "./src",
     "paths": {
-      "@styles/*": ["styles/*"],
-      "@gama-ui/components": ["app/components"],
-      "@gama-ui/interface": ["app/interface"],
-      "@gama-ui/pipe": ["app/pipe"],
-      "@gama-ui/view": ["app/view"],
-      "@gama-ui/services": ["app/services"]
 
     },
     "noImplicitOverride": true,

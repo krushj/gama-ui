@@ -27,7 +27,7 @@ To use the `IconComponent` in your Angular application, ensure you have Angular 
    Ensure that your Angular module or component imports the `IconComponent`:
 
    ```typescript
-   import { IconComponent } from '@gama-ui/components'; // Adjust the path accordingly
+   import { IconComponent } from '../..//components'; // Adjust the path accordingly
    ```
 
 3. **Add the component to your template:**
@@ -108,7 +108,7 @@ The `DateRangePickerComponent` is a custom Angular component that allows users t
 ### Installation
 
 ```typescript
-import { DateRangePickerComponent } from '@gama-ui/components';
+import { DateRangePickerComponent } from '../..//components';
 ```
 
 ### Usage
@@ -182,7 +182,7 @@ To install and use the `GButton` component, follow these steps:
    Import the `ButtonComponent` into your module, where you want to use the button.
 
    ```typescript
-   import { ButtonComponent } from '@gama-ui/components';
+   import { ButtonComponent } from '../..//components';
    ```
 
    Include it in the `declarations` of your module:
