@@ -1,4 +1,13 @@
 <div class="flex flex-row bg-white-100">
-  
+    <button GMenuTrigger="menu" class="example-standalone-trigger">Click me!</button>
+
+    <ng-template #menu>
+      <div class="example-menu" GMenu>
+        <button class="example-menu-item" GMenuItem>Refresh</button>
+        <button class="example-menu-item" GMenuItem>Settings</button>
+        <button class="example-menu-item" GMenuItem>Help</button>
+        <button class="example-menu-item" GMenuItem>Sign out</button>
+      </div>
+    </ng-template>
 </div>
 
